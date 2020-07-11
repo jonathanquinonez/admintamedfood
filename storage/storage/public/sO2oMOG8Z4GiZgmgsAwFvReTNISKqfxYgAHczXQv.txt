@@ -1,0 +1,3 @@
+﻿569,3,1,2019-10-31 10:00:00,Información de terminos y condiciones
+459,3,1,2019-10-31 10:00:01,Información de terminos y condiciones
+456,3,1,2019-10-31 10:00:02,Información de terminos y condiciones

@@ -1,0 +1,2 @@
+codigo, id_producto,id_sucursal,fecha_vence
+120145,11, 35,2019-04-27 00:00:00
