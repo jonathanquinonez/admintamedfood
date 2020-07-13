@@ -10,6 +10,10 @@
     <meta name="author" content="PIXINVENT">
      <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Tamed Administrativo</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+    <link rel="apple-touch-icon" href="{{URL::asset('assets/app-assets/images/ico/apple-icon-120.png')}}">
+    
     <!-- Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="{{URL::asset('assets/app-assets/images/ico/favicon.ico')}}">
     <!-- Plugins Core Css -->
@@ -17,17 +21,15 @@
     <link  rel="stylesheet" href="{{URL::asset('assets/css/style-rtl.css')}}">
 
      <!-- BEGIN: Vendor CSS-->
-     <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/vendors/css/vendors.min.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/vendors/css/calendars/fullcalendar.min.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/vendors/css/calendars/extensions/daygrid.min.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/vendors/css/calendars/extensions/timegrid.min.css')}}">
-     <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/vendors/css/pickers/pickadate/pickadate.css')}}">
      <!-- END: Vendor CSS-->
  
      <!-- BEGIN: Theme CSS-->
      <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/css/bootstrap.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/css/bootstrap-extended.css')}}">
-     <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/css/colors.css')}}">
+
      <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/css/components.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/css/themes/dark-layout.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/css/themes/semi-dark-layout.css')}}">
@@ -36,11 +38,15 @@
      <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/css/core/colors/palette-gradient.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/css/plugins/calendars/fullcalendar.css')}}">
+     <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/css/pages/app-user.css')}}">
      <!-- END: Page CSS-->
  
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi&display=swap" rel="stylesheet">
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFZn-_2DpGEgdfnXX4gywzaGRS01HgA-U&callback=initMap" type="text/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/css/style.css')}}">
+
     @yield('css')
     
 </head>
@@ -134,7 +140,7 @@
                         </li>
                         <li><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Chartjs">Info App</span></a>
                         </li>
-                    <li><a href="{{route('editarPerfil', [Auth()->user()->id])}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Echarts">Perfil</span></a>
+                    <li><a href="{{route('verPerfil', [Auth()->user()->id])}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Echarts">Perfil</span></a>
                         </li>
                     </ul>
                 </li>
@@ -149,9 +155,9 @@
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
-        <div class="content-wrapper">
+        
         @yield('contenido')
-        </div>
+        
     </div>
     <!-- END: Content-->
 

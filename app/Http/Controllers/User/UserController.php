@@ -50,6 +50,17 @@ class UserController extends Controller
         //
     }
      /**
+     * Muestra la vista del usuarios con toda la información para poder verla.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function verPerfil($id)
+    {
+        $dataUser = User::find($id);
+        return view('admin.user.verperfil', compact('dataUser'));
+    }
+     /**
      * Muestra la vista del usuarios con toda la información para poder editarla.
      *
      * @param  int  $id
@@ -58,7 +69,7 @@ class UserController extends Controller
     public function editarPerfil($id)
     {
         $dataUser = User::find($id);
-        return view('admin.index');
+        return view('admin.user.editarPerfil', compact('dataUser'));
     }
 
     /**
