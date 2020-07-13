@@ -110,8 +110,7 @@
                                                         </div>
                                                         <div class="text-right"><a href="{{route('password.request')}}" class="card-link">¿Olvidaste tu contrase&ntilde;a?</a></div>
                                                     </div>
-                                                    <a href="auth-register.html" class="btn btn-outline-primary float-left btn-inline">Register</a>
-                                                    <button type="submit" class="btn btn-primary float-right btn-inline">Login</button>
+                                                    <button type="submit" class="btn btn-primary float-left btn-inline">Login</button>
                                                 </form>
                                             </div>
                                         </div>
