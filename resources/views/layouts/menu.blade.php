@@ -134,7 +134,7 @@
                         </li>
                         <li><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Chartjs">Info App</span></a>
                         </li>
-                        <li><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Echarts">Perfil</span></a>
+                    <li><a href="{{route('editarPerfil', [Auth()->user()->id])}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Echarts">Perfil</span></a>
                         </li>
                     </ul>
                 </li>

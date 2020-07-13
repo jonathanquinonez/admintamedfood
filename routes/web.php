@@ -51,3 +51,5 @@ Route::post('verificando', 'Admin\AdminController@verificando')->name('verifican
 | Administrativo
 |--------------------------------------------------------------------------
  */
+
+Route::get('/editar/perfil/{id}', 'User\UserController@editarPerfil')->name('editarPerfil');
