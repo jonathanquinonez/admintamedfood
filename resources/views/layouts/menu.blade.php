@@ -128,7 +128,9 @@
                 </li>
                 <li class=" nav-item"><a href="#"><i class="feather icon-align-left"></i><span class="menu-title" data-i18n="Email">Delivery Boy</span></a>
                 </li>
-                <li class=" nav-item"><a href="#"><i class="feather icon-align-left"></i><span class="menu-title" data-i18n="Email">Clientes</span></a>
+                <li class=" nav-item"><a href="{{route('verClientes')}}">
+                <i class="feather icon-align-left"></i>
+                <span class="menu-title" data-i18n="Email">Clientes</span></a>
                 </li>
             
                 <li class=" nav-item">
