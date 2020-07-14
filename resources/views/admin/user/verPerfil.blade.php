@@ -59,60 +59,14 @@
                                     </table>
                                 </div>
                                 <div class="col-12">
-                                    <a href="{{route('editarPerfil',[$dataUser->id])}}" class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i> Edit</a>
-                                    <button class="btn btn-outline-danger"><i class="feather icon-trash-2"></i> Delete</button>
-                                </div>
+                                    <a href="{{route('editarPerfil',[$dataUser->id])}}" class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i> Editar</a>
+                                     </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- account end -->
-                <!-- information start -->
-                <div class="col-md-12 col-12 ">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title mb-2">Information</div>
-                        </div>
-                        <div class="card-body">
-                            <table>
-                                <tr>
-                                    <td class="font-weight-bold">Birth Date </td>
-                                    <td>28 January 1998
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold">Mobile</td>
-                                    <td>+65958951757</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold">Website</td>
-                                    <td>https://rowboat.com/insititious/Angelo
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold">Languages</td>
-                                    <td>English, Arabic
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold">Gender</td>
-                                    <td>female</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold">Contact</td>
-                                    <td>email, message, phone
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- information start -->
-                <!-- social links end -->
               
-                <!-- social links end -->
-                <!-- permissions start -->
-                
                 <!-- permissions end -->
             </div>
         </section>

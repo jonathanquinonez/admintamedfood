@@ -21,9 +21,11 @@
     <link  rel="stylesheet" href="{{URL::asset('assets/css/style-rtl.css')}}">
 
      <!-- BEGIN: Vendor CSS-->
+     <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/vendors/css/vendors.min.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/vendors/css/calendars/fullcalendar.min.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/vendors/css/calendars/extensions/daygrid.min.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/app-assets/vendors/css/calendars/extensions/timegrid.min.css')}}">
+     
      <!-- END: Vendor CSS-->
  
      <!-- BEGIN: Theme CSS-->
@@ -61,9 +63,7 @@
                         <ul class="nav navbar-nav">
                             <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
                         </ul>
-                        <ul class="nav navbar-nav bookmark-icons">
-                            <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-todo.html" data-toggle="tooltip" data-placement="top" title="Todo"><i class="ficon feather icon-check-square"></i></a></li>
-                         </ul>
+                        
                        
                     </div>
                     <ul class="nav navbar-nav float-right">
