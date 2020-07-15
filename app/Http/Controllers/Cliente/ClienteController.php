@@ -17,7 +17,20 @@ class ClienteController extends Controller
     {
         $dataCliente = DB::table('clientes')
         ->join('users','users.id','=','clientes.user_id')
+        //->join('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
+        ->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
+        ->select('users.*',
+        'clientes.direccion',
+        'clientes.rut',
+        'clientes.img_perfil',
+        'clientes.suscripcion_id' 
+        // 'suscripciones.nombre as nombre_suscripcion',
+        // 'suscripciones.detalle as detalle_suscripcion'
+        )
         ->get();
+
+
+        //return response()->json(compact('dataCliente'),201);
         return view('admin.cliente.verClientes', compact('dataCliente'));
     }
 
