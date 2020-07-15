@@ -30,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
             //         'base_uri' => 'http://www.api.avantisoluciones.com/public',
             //     ]);
             // });
-
+        if ($this->app->environment() == 'local') {
+            $this->app->register(\Reliese\Coders\CodersServiceProvider::class);
+        }
     }
 }
