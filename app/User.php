@@ -9,55 +9,32 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable, softDeletes;
+    
+	protected $table = 'users';
 
-    const USUARIO_VERIFICADO    = '1';
-    const USUARIO_NO_VERIFICADO = '0';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $table = 'users';
+	protected $casts = [
+		'verificado' => 'int',
+		'bloqueado' => 'int',
+		'notificaciones' => 'int'
+	];
 
-    protected $fillable = [
-        'name',
-        'admin',
-        'email',
-        'password',
-        'verificado',
-        'verificacion_token',
+	protected $hidden = [
+		'password',
+		'remember_token'
+	];
+
+	protected $fillable = [
+		'name',
+		'apellido',
+		'email',
+		'telefono',
+		'admin',
+		'verificado',
+		'bloqueado',
+		'notificaciones',
+
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        // 'remember_token',
-        'verificacion_token',
-    ];
-
-    public static function generarVerificationToken()
-    {
-        return str_random(40);
-    }
-
-    /*public function setNombreAttribute($valor)
-    {
-        $this->attributes['nombre'] =ucwords($valor);
-    }*/
-    public function setDireccionAttribute($valor)
-    {
-        $this->attributes['direccion'] = strtolower($valor);
-    }
-
-    /*public function getNombreAttribute($valor)
-    {
-        return ucwords($valor);
-    }*/
-
+    
     public function getDireccionAttribute($valor)
     {
         return ucwords($valor);
@@ -81,4 +58,26 @@ class User extends Authenticatable
     {
         $this->notify(new MyResetPassword($token));
     }
+
+	public function cliente()
+	{
+		return $this->hasOne(Cliente::class);
+	}
+
+	public function deliveries()
+	{
+		return $this->hasMany(Delivery::class);
+	}
+
+	public function direcciones()
+	{
+		return $this->hasMany(Direccione::class);
+	}
+
+	public function productores()
+	{
+		return $this->hasMany(Productore::class);
+    }
+    
+    
 }

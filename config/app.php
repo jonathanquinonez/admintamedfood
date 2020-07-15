@@ -184,7 +184,9 @@ return [
         Laraveles\Spanish\SpanishServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Skovmand\Mailchimp\MailchimpServiceProvider::class,
-	Milon\Barcode\BarcodeServiceProvider::class,
+    Milon\Barcode\BarcodeServiceProvider::class,
+    
+    Reliese\Coders\CodersServiceProvider::class,
     ],
 
     /*

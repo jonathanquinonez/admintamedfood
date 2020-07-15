@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Cliente;
 
+use App\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -29,9 +30,9 @@ class ClienteController extends Controller
         )
         ->get();
 
-
-        //return response()->json(compact('dataCliente'),201);
-        return view('admin.cliente.verClientes', compact('dataCliente'));
+         $data = Cliente::all();
+        return response()->json(compact('data'),201);
+        //return view('admin.cliente.verClientes', compact('dataCliente'));
     }
 
     /**
