@@ -20,6 +20,18 @@ class ConfiguracionController extends Controller
         return view('admin.configuracion.verCategoriasTipo',compact('dataConfiguracion'));
     }
 
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index2()
+    {
+        $dataConfiguracion = DB::table('categorias_nutricional')
+        ->get();
+        return view('admin.configuracion.verCategoriasNutricion',compact('dataConfiguracion'));
+    }
+
     /**
      * Muestra el listado de terminos y condiciones
      *
@@ -136,6 +148,27 @@ class ConfiguracionController extends Controller
             ->update(['estado' => 0]);
         }else{
                 DB::table('categorias_tipos')
+                ->where('id', $id)
+                ->update(['estado' => 1]);
+        }
+
+        return redirect()->back();
+    }
+
+      /**
+     * Acrtualiza el estado de la categoria nutricion y recibe un parametro del estado actual de la categoria
+     *
+     * @param  int  $id = 1 or 0
+     * @return \Illuminate\Http\Response
+     */
+    public function actualizarEstadoCategoriaNutricion($id,$estado)
+    {
+        if($estado == 1){
+            DB::table('categorias_nutricional')
+            ->where('id', $id)
+            ->update(['estado' => 0]);
+        }else{
+                DB::table('categorias_nutricional')
                 ->where('id', $id)
                 ->update(['estado' => 1]);
         }

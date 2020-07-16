@@ -67,7 +67,7 @@ Route::get('/ver/Deliverys', 'Delivery\DeliveryController@index')->name('verDeli
 
 /*
 |--------------------------------------------------------------------------
-| Categoría
+| Configuraciones
 |--------------------------------------------------------------------------
  */
 
@@ -80,6 +80,8 @@ Route::post('crear/TerminosCondiciones', 'Configuracion\ConfiguracionController@
 
 Route::get('ver/Suscripciones', 'Configuracion\ConfiguracionController@verSuscripciones')->name('verSuscripciones');
 
+Route::get('/ver/CategoriasNutricion', 'Configuracion\ConfiguracionController@index2')->name('verCategoriasNutricion');
+Route::get('actualizarEstadoCategoriaNutricion/{id}/{estado}', 'Configuracion\ConfiguracionController@actualizarEstadoCategoriaNutricion')->name('actualizarEstadoCategoriaNutricion');
 
 
 
