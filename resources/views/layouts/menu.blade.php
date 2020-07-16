@@ -122,7 +122,9 @@
                 </li> --}}
                 <li class=" navigation-header"><span>Menu Administrativo</span>
                 </li>
-                <li class=" nav-item"><a href="#"><i class="feather icon-align-left"></i><span class="menu-title" data-i18n="Email">Productores</span></a>
+                <li class=" nav-item"><a href="{{route('verProductor')}}">
+                    <i class="feather icon-align-left"></i>
+                    <span class="menu-title" data-i18n="Email">Productores</span></a>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="feather icon-align-left"></i><span class="menu-title" data-i18n="Email">Receptores</span></a>
                 </li>

@@ -62,6 +62,7 @@ Route::get('/editar/perfil/{id}', 'User\UserController@editarPerfil')->name('edi
  */
 
 Route::get('/ver/Clientes', 'Cliente\ClienteController@index')->name('verClientes');
+Route::get('/ver/Productores', 'productor\ProductorController@index')->name('verProductor');
 
 
 

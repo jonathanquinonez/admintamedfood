@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Cliente;
+namespace App\Http\Controllers\productor;
 
-use App\Cliente;
 use Illuminate\Http\Request;
+use App\Productore;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class ClienteController extends Controller
+class ProductorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,23 +16,21 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $dataCliente = DB::table('clientes')
-        ->join('users','users.id','=','clientes.user_id')
-        //->join('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
-        ->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
-        ->select('users.*',
-        'clientes.direccion',
-        'clientes.rut',
-        'clientes.img_perfil',
-        'clientes.suscripcion_id' 
-        // 'suscripciones.nombre as nombre_suscripcion',
-        // 'suscripciones.detalle as detalle_suscripcion'
-        )
-        ->get();
+        // $dataCliente = DB::table('productos')
+        // ->join('')
+        // //->join('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
+        // //->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
+        // ->select('productos.*',
+        // 'clientes.medida',
+        // 'clientes.stock',
+        // 'clientes.nombre')->get();
 
-        //  $data = Cliente::all();
-        //return response()->json(compact('dataCliente'),201);
-        return view('admin.cliente.verClientes', compact('dataCliente'));
+        // //  $data = Cliente::all();
+        // return view('admin.producto.verProducto', compact('dataCliente'));
+        $prodcutores = Productore::all();
+        return response()->json(compact('prodcutores'),201);
+        // return view('admin.productor.verProductor');
+     
     }
 
     /**
