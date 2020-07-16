@@ -37,7 +37,7 @@
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <fieldset class="form-group">
                                                     <label>Contraseña</label>
-                                                    <input type="text" class="form-control {{ $errors->has('password') ? ' has-error' : '' }}" required="" value="{{ old('password') }}" name="password">
+                                                    <input type="password" class="form-control {{ $errors->has('password') ? ' has-error' : '' }}" required="" value="{{ old('password') }}" name="password">
                                                     @if ($errors->has('password'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('password') }}</strong>
@@ -75,10 +75,10 @@
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Apellido</label>
-                                                    <input type="text" class="form-control {{ $errors->has('apellido_usuario') ? ' has-error' : '' }}" required="" value="{{ old('apellido_usuario') }}" name="apellido_usuario">
-                                                    @if ($errors->has('apellido_usuario'))
+                                                    <input type="text" class="form-control {{ $errors->has('apellido') ? ' has-error' : '' }}" required="" value="{{ old('apellido') }}" name="apellido">
+                                                    @if ($errors->has('apellido'))
                                                         <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('apellido_usuario') }}</strong>
+                                                        <strong>{{ $errors->first('apellido') }}</strong>
                                                     </span>
                                                     @endif
                                                 </fieldset>
@@ -86,10 +86,10 @@
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Telefono</label>
-                                                    <input type="text" class="form-control {{ $errors->has('telefono_usuario') ? ' has-error' : '' }}" required="" value="{{ old('telefono_usuario') }}" name="telefono_usuario">
-                                                    @if ($errors->has('telefono_usuario'))
+                                                    <input type="text" class="form-control {{ $errors->has('telefono') ? ' has-error' : '' }}" required="" value="{{ old('telefono') }}" name="telefono">
+                                                    @if ($errors->has('telefono'))
                                                         <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('telefono_usuario') }}</strong>
+                                                        <strong>{{ $errors->first('telefono') }}</strong>
                                                     </span>
                                                     @endif
                                                 </fieldset>
@@ -97,10 +97,10 @@
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <fieldset class="form-group">
                                                     <label>DNI</label>
-                                                    <input type="text" class="form-control {{ $errors->has('dni_usuario') ? ' has-error' : '' }}" required="" value="{{ old('dni_usuario') }}" name="dni_usuario">
-                                                    @if ($errors->has('dni_usuario'))
+                                                    <input type="text" class="form-control {{ $errors->has('rut') ? ' has-error' : '' }}" required="" value="{{ old('rut') }}" name="rut">
+                                                    @if ($errors->has('rut'))
                                                         <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('dni_usuario') }}</strong>
+                                                        <strong>{{ $errors->first('rut') }}</strong>
                                                     </span>
                                                     @endif
                                                 </fieldset>
@@ -108,10 +108,10 @@
                                             <div class="col-12">
                                                 <fieldset class="form-group">
                                                     <label>Dirección</label>
-                                                    <input type="text" class="form-control {{ $errors->has('direccion_usuario') ? ' has-error' : '' }}" required="" value="{{ old('direccion_usuario') }}" name="direccion_usuario">
-                                                    @if ($errors->has('direccion_usuario'))
+                                                    <input type="text" class="form-control {{ $errors->has('direccion') ? ' has-error' : '' }}" required="" value="{{ old('direccion') }}" name="direccion">
+                                                    @if ($errors->has('direccion'))
                                                         <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('direccion_usuario') }}</strong>
+                                                        <strong>{{ $errors->first('direccion') }}</strong>
                                                     </span>
                                                     @endif
                                                 </fieldset>
