@@ -17,6 +17,9 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Clientes</h4>
+                    <div>
+                        <a href="{{route('crearViewCliente')}}" class="btn btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Nuevo</a>
+                    </div>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
@@ -28,26 +31,34 @@
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>Teléfono</th>
-                                        <th>Direccion</th>
                                         <th>Rut</th>
                                         <th>Imagen</th>
                                         <th>Verificado</th>
                                         <th>Suscripcion</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 
                                 <tbody>
                                    @foreach ($dataCliente as $item)
                                    <tr>
-                                   <td>{{$item->name}}</td>
-                                    <td>{{$item->apellido}}</td>
-                                    <td>{{$item->telefono}}</td>
-                                    <td>{{$item->direccion}}</td>
-                                    <td>{{$item->rut}}</td>
-                                   <td><img height="50" width="50" src="{{$item->img_perfil}}"></td>
-                                   <td>{{$item->verificado}}</td>
-                                   <td>{{$item->suscripcion_id}}</td>
-                                </tr>
+                                        <td>{{$item->name}}</td>
+                                        <td>{{$item->apellido}}</td>
+                                        <td>{{$item->telefono}}</td>
+                                        <td>{{$item->rut}}</td>
+                                        <td><img height="50" width="50" src="{{$item->img_perfil}}"></td>
+                                        <td>{{$item->verificado}}</td>
+                                        <td>
+                                           @if($item->suscripcion_id)
+                                               <i class="fa fa-circle font-small-3 text-success mr-50"></i>
+                                           @else
+                                                <i class="fa fa-circle font-small-3 text-danger mr-50"></i>
+                                           @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{route('crearCliente')}}" class="btn btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Editar</a>
+                                        </td>
+                                    </tr>
                                    @endforeach   
                              </tbody>
 
@@ -56,11 +67,11 @@
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>Teléfono</th>
-                                        <th>Direccion</th>
                                         <th>Rut</th>
                                         <th>Imagen</th>
                                         <th>Verificado</th>
                                         <th>Suscripcion</th>
+                                        <th></th>
                                     </tr>
                                 </tfoot>
                             </table>
