@@ -16,20 +16,16 @@ class ProductorController extends Controller
      */
     public function index()
     {
-        // $dataProductor = DB::table('productos')
-        // ->join('')
-        // //->join('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
-        // //->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
-        // ->select('productos.*',
-        // 'clientes.medida',
-        // 'clientes.stock',
-        // 'clientes.nombre')->get();
+         $dataProductor = DB::table('productores')
+         ->join('users','users.id','=','productores.user_id')
+         ->select('users.*')
+         ->get();
 
-        // //  $data = Cliente::all();
-        // return view('admin.producto.verProductor', compact('dataProductor'));
+        
+         return view('admin.productor.verProductor', compact('dataProductor'));
         // $prodcutores = Productore::all();
         // return response()->json(compact('prodcutores'),201);
-         return view('admin.productor.verProductor');
+         //return view('admin.productor.verProductor');
      
     }
 

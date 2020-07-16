@@ -24,9 +24,11 @@
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
-                                        <th>Medida</th>
-                                        <th>Stock</th>
-                                  
+                                        <th>Apellido</th>
+                                        <th>telefono</th>
+                                        <th>Email</th>
+                                        <th>Verificado</th>
+                                
                                     </tr>
                                 </thead>
                                 
@@ -34,8 +36,10 @@
                                    {{-- @foreach ($dataCliente as $item)
                                    <tr>
                                    <td>{{$item->nombre}}</td>
-                                    <td>{{$item->medida}}</td>
-                                   <td>{{$item->stock}}</td>
+                                    <td>{{$item->apellido}}</td>
+                                   <td>{{$item->telefono}}</td>
+                                   <td>{{$item->Email}}</td>
+                                   <td>{{$item->Verificado}}</td>
                                 </tr>
                                    @endforeach    --}}
                              </tbody>
@@ -43,8 +47,10 @@
                                 <tfoot>
                                     <tr>
                                         <th>Nombre</th>
-                                        <th>Medida</th>
-                                        <th>Stock</th>
+                                        <th>Apellido</th>
+                                        <th>telefono</th>
+                                        <th>Email</th>
+                                        <th>Verificado</th>
                                         
                                     </tr>
                                 </tfoot>

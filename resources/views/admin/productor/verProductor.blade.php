@@ -24,27 +24,28 @@
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
-                                        <th>Medida</th>
-                                        <th>Stock</th>
+                                        <th>Apellido</th>
+                                        <th>Telefono</th>
                                   
                                     </tr>
                                 </thead>
                                 
                                 <tbody>
-                                   {{-- @foreach ($dataCliente as $item)
+                                   @foreach ($dataProductor as $item)
                                    <tr>
-                                   <td>{{$item->nombre}}</td>
-                                    <td>{{$item->medida}}</td>
-                                   <td>{{$item->stock}}</td>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->apellido}}</td>
+                                    <td>{{$item->telefono}}</td>
+                                   
                                 </tr>
-                                   @endforeach    --}}
+                                   @endforeach   
                              </tbody>
 
                                 <tfoot>
                                     <tr>
                                         <th>Nombre</th>
-                                        <th>Medida</th>
-                                        <th>Stock</th>
+                                        <th>Apellido</th>
+                                        <th>Telefono</th>
                                         
                                     </tr>
                                 </tfoot>
