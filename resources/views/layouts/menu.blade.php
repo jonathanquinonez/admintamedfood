@@ -126,6 +126,12 @@
                     <i class="feather icon-align-left"></i>
                     <span class="menu-title" data-i18n="Email">Productores</span></a>
                 </li>
+                
+            <li class=" nav-item"><a href="{{route('verDelivery')}}">
+                <i class="feather icon-align-left">
+                    </i><span class="menu-title" data-i18n="Email">Delivery</span></a>
+                </li>
+
                 <li class=" nav-item"><a href="#"><i class="feather icon-align-left"></i><span class="menu-title" data-i18n="Email">Receptores</span></a>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="feather icon-align-left"></i><span class="menu-title" data-i18n="Email">Delivery Boy</span></a>

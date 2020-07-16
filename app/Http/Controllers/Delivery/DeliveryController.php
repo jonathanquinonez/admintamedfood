@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\productor;
+namespace App\Http\Controllers\Delivery;
 
 use Illuminate\Http\Request;
-use App\Productore;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class ProductorController extends Controller
+class DeliveryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,21 +14,8 @@ class ProductorController extends Controller
      */
     public function index()
     {
-        // $dataProductor = DB::table('productos')
-        // ->join('')
-        // //->join('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
-        // //->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
-        // ->select('productos.*',
-        // 'clientes.medida',
-        // 'clientes.stock',
-        // 'clientes.nombre')->get();
+        return view('admin.Delivery.verDelivery');
 
-        // //  $data = Cliente::all();
-        // return view('admin.producto.verProductor', compact('dataProductor'));
-        // $prodcutores = Productore::all();
-        // return response()->json(compact('prodcutores'),201);
-         return view('admin.productor.verProductor');
-     
     }
 
     /**
