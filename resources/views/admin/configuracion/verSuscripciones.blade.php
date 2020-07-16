@@ -75,28 +75,38 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel33">Crear Términos y Condiciones</h4>
+                <h4 class="modal-title" id="myModalLabel33">Crear Suscripciones</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="#">
+        <form  method="POST" action="{{route('crearSuscripciones')}}" enctype="multipart/form-data">
+            {{ csrf_field() }}
                 <div class="modal-body">
                     <div class="col-12">
                         <fieldset class="form-label-group">
-                            <input type="text" class="form-control" id="floating-label1" placeholder="Nombre">
+                            <input type="text" class="form-control" id="floating-label1" name="nombre" placeholder="Nombre">
                             <label for="floating-label1">Nombre</label>
                         </fieldset>
                     </div>
+
                     <div class="col-12">
                         <fieldset class="form-label-group">
-                            <textarea class="form-control" id="label-textarea" rows="6" placeholder="Descripción"></textarea>
-                            <label for="label-textarea">Descripción</label>
+                            <input type="text" class="form-control" id="floating-label1" name="detalle" placeholder="Detalle">
+                            <label for="floating-label1">Detalle</label>
                         </fieldset>
                     </div>
+
+                    <div class="col-12">
+                        <fieldset class="form-label-group">
+                            <input type="number" class="form-control" id="floating-label1" name="porcentaje" placeholder="Porcentaje">
+                            <label for="floating-label1">Porcentaje</label>
+                        </fieldset>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
+                    <button type="submit" class="btn btn-success" >Guardar</button>
                 </div>
             </form>
         </div>
