@@ -16,7 +16,7 @@ class ProductorController extends Controller
      */
     public function index()
     {
-        // $dataCliente = DB::table('productos')
+        // $dataProductor = DB::table('productos')
         // ->join('')
         // //->join('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
         // //->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
@@ -26,10 +26,10 @@ class ProductorController extends Controller
         // 'clientes.nombre')->get();
 
         // //  $data = Cliente::all();
-        // return view('admin.producto.verProducto', compact('dataCliente'));
-        $prodcutores = Productore::all();
-        return response()->json(compact('prodcutores'),201);
-        // return view('admin.productor.verProductor');
+        // return view('admin.producto.verProductor', compact('dataProductor'));
+        // $prodcutores = Productore::all();
+        // return response()->json(compact('prodcutores'),201);
+         return view('admin.productor.verProductor');
      
     }
 
