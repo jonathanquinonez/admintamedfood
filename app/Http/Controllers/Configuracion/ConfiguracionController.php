@@ -21,6 +21,31 @@ class ConfiguracionController extends Controller
     }
 
     /**
+     * Muestra el listado de terminos y condiciones
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function verTerminosCondiciones()
+    {
+        $dataTerminos = DB::table('terminos_condiciones')
+        ->get();
+        return view('admin.configuracion.verTerminosCondiciones',compact('dataTerminos'));
+    }
+
+     /**
+     * Muestra el listado de Suscripciones
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function verSuscripciones()
+    {
+        $dataSuscripcion = DB::table('suscripciones')
+        ->get();
+        return view('admin.configuracion.verSuscripciones',compact('dataSuscripcion'));
+    }
+
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -39,6 +64,17 @@ class ConfiguracionController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    /**
+     * Crear terminos y condiciiones a partir de un modal.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function crearTerminosCondiciones(Request $request)
+    {
+        return redirect()->back();
     }
 
     /**

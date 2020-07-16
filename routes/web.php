@@ -74,6 +74,13 @@ Route::get('/ver/Deliverys', 'Delivery\DeliveryController@index')->name('verDeli
 Route::get('/ver/CategoriasTipo', 'Configuracion\ConfiguracionController@index')->name('verCategoriasTipo');
 Route::get('actualizarEstadoCategoriaTipo/{id}/{estado}', 'Configuracion\ConfiguracionController@actualizarEstadoCategoriaTipo')->name('actualizarEstadoCategoriaTipo');
 
+Route::get('ver/TerminosCondiciones', 'Configuracion\ConfiguracionController@verTerminosCondiciones')->name('verTerminosCondiciones');
+Route::post('crear/TerminosCondiciones', 'Configuracion\ConfiguracionController@crearTerminosCondiciones')->name('crearTerminosCondiciones');
+
+
+Route::get('ver/Suscripciones', 'Configuracion\ConfiguracionController@verSuscripciones')->name('verSuscripciones');
+
+
 
 
 

@@ -16,9 +16,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Categoría por tipo de Fruta</h4>
+                    <h4 class="card-title">Suscripciones</h4>
                     <button type="button" class="btn btn-success mr-1 mb-1"><i class="feather icon-check-square"></i> Nuevo</button>          
-      
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
@@ -27,37 +26,25 @@
                             <table class="table table-striped dataex-html5-selectors">
                                 <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Nombre</th>
+                                        <th>Detalle</th>
+                                        <th>Porcentaje</th>
                                         <th>Imagen</th>
-                                        <th>Estado</th>
-                                        <th>Habilitar/Inhabilitar</th>
+                                        <th>Ver</th>
                                     </tr>
                                 </thead>
                                 
                                 <tbody>
-                                   @foreach ($dataConfiguracion as $item)
+                                   @foreach ($dataSuscripcion as $item)
                                    <tr>
+                                   <td>{{$item->id}}</td>
                                    <td>{{$item->nombre}}</td>
+                                   <td>{{$item->detalle}}</td>
+                                   <td>{{$item->porcentaje}}</td>
                                    <td><img height="50" width="50" src="{{$item->img}}"></td>
                                    <td>
-                                    @if($item->estado == 1)
-                                    <div class="badge badge-secondary">Habilitado</div>
-                                    @endif
-                                    @if($item->estado != 1)
-                                    <div class="badge badge-secondary">Inhabilitado</div>
-                                    @endif
-                                    </td>
-                                   <td>
-                                    @if($item->estado == 1)
-                                   <a href="{{route('actualizarEstadoCategoriaTipo',[$item->id,$item->estado])}}">
-                                    <div class="badge badge-danger">Inhabilitado</div>
-                                    </a>
-                                    @endif
-                                    @if($item->estado != 1)
-                                <a href="{{route('actualizarEstadoCategoriaTipo',[$item->id,$item->estado])}}">
-                                    <div class="badge badge-success">Habilitado</div>
-                                    </a>
-                                    @endif
+                                        <button type="button" class="btn btn-warning mr-1 mb-1"><i class="feather icon-edit"></i> Editar</button>
                                     </td>
                                 </tr>
                                    @endforeach   
@@ -65,10 +52,12 @@
 
                                 <tfoot>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Nombre</th>
+                                        <th>Detalle</th>
+                                        <th>Porcentaje</th>
                                         <th>Imagen</th>
-                                        <th>Estado</th>
-                                        <th>Habilitar/Inhabilitar</th>
+                                        <th>Ver</th>
                                     </tr>
                                 </tfoot>
                             </table>
