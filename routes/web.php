@@ -79,6 +79,24 @@ Route::get('/ver/Productores', 'productor\ProductorController@index')->name('ver
  */
 Route::get('/ver/Deliverys', 'Delivery\DeliveryController@index')->name('verDelivery');
 
+/*
+|--------------------------------------------------------------------------
+| Configuraciones
+|--------------------------------------------------------------------------
+ */
+
+Route::get('/ver/CategoriasTipo', 'Configuracion\ConfiguracionController@index')->name('verCategoriasTipo');
+Route::get('actualizarEstadoCategoriaTipo/{id}/{estado}', 'Configuracion\ConfiguracionController@actualizarEstadoCategoriaTipo')->name('actualizarEstadoCategoriaTipo');
+
+Route::get('ver/TerminosCondiciones', 'Configuracion\ConfiguracionController@verTerminosCondiciones')->name('verTerminosCondiciones');
+Route::post('crear/TerminosCondiciones', 'Configuracion\ConfiguracionController@crearTerminosCondiciones')->name('crearTerminosCondiciones');
+
+
+Route::get('ver/Suscripciones', 'Configuracion\ConfiguracionController@verSuscripciones')->name('verSuscripciones');
+
+Route::get('/ver/CategoriasNutricion', 'Configuracion\ConfiguracionController@categoriaNutricional')->name('verCategoriasNutricion');
+Route::get('actualizarEstadoCategoriaNutricion/{id}/{estado}', 'Configuracion\ConfiguracionController@actualizarEstadoCategoriaNutricion')->name('actualizarEstadoCategoriaNutricion');
+
 
 
 
