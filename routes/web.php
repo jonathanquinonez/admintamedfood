@@ -62,7 +62,21 @@ Route::get('/editar/perfil/{id}', 'User\UserController@editarPerfil')->name('edi
  */
 
 Route::get('/ver/Clientes', 'Cliente\ClienteController@index')->name('verClientes');
+Route::get('/crear/Clientes', 'Cliente\ClienteController@createView')->name('crearViewCliente');
+Route::post('/guardar/Clientes', 'Cliente\ClienteController@create')->name('crearCliente');
+
+/*
+|--------------------------------------------------------------------------
+| Productos
+|--------------------------------------------------------------------------
+ */
 Route::get('/ver/Productores', 'productor\ProductorController@index')->name('verProductor');
+
+/*
+|--------------------------------------------------------------------------
+| Deliverys
+|--------------------------------------------------------------------------
+ */
 Route::get('/ver/Deliverys', 'Delivery\DeliveryController@index')->name('verDelivery');
 
 

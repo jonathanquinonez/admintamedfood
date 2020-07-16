@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Cliente;
 
 use App\Cliente;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class ClienteController extends Controller
 {
@@ -40,9 +42,36 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createView()
     {
-        //
+        return view('admin.cliente.crearCliente');
+    }
+
+    public function create(Request $request)
+    {
+        $validator = $request->validate([
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|max:128',
+            'img_perfil' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            'name' => 'required|string|max:50',
+            'apellido' => 'required|string|max:55',
+            'telefono' => 'required|string|max:20',
+            'rut' => 'required|string|max:100',
+            'direccion' => 'required|string|max:500',
+        ]);
+
+        if($validator->fails())
+        {
+            return $validator->errors();
+//            Alert::error('Error al crear')->persistent("Cerrar");
+//            return redirect()->back()
+//                ->withInput($request->only('nombre', 'cedula','celular'))
+//                ->withErrors($validator->errors());
+        }
+
+        return "success";
+
+        //return view('admin.cliente.crearCliente');
     }
 
     /**
