@@ -25,20 +25,27 @@
                             <table class="table table-striped dataex-html5-selectors">
                                 <thead>
                                     <tr>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Teléfono</th>
                                         <th>Direccion</th>
                                         <th>Rut</th>
                                         <th>Imagen</th>
+                                        <th>Verificado</th>
                                         <th>Suscripcion</th>
-                                        
                                     </tr>
                                 </thead>
                                 
                                 <tbody>
                                    @foreach ($dataCliente as $item)
                                    <tr>
-                                   <td>{{$item->direccion}}</td>
+                                   <td>{{$item->name}}</td>
+                                    <td>{{$item->apellido}}</td>
+                                    <td>{{$item->telefono}}</td>
+                                    <td>{{$item->direccion}}</td>
                                     <td>{{$item->rut}}</td>
-                                    <td><img src='img_perfil'></td>
+                                   <td><img height="50" width="50" src="{{$item->img_perfil}}"></td>
+                                   <td>{{$item->verificado}}</td>
                                    <td>{{$item->suscripcion_id}}</td>
                                 </tr>
                                    @endforeach   
@@ -46,11 +53,14 @@
 
                                 <tfoot>
                                     <tr>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Teléfono</th>
                                         <th>Direccion</th>
                                         <th>Rut</th>
                                         <th>Imagen</th>
+                                        <th>Verificado</th>
                                         <th>Suscripcion</th>
-                                        
                                     </tr>
                                 </tfoot>
                             </table>
