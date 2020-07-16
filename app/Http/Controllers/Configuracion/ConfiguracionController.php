@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Configuracion;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 
 class ConfiguracionController extends Controller
@@ -86,6 +88,24 @@ class ConfiguracionController extends Controller
      */
     public function crearTerminosCondiciones(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|string|max:50',
+            'descripcion' => 'required|string',
+        ]); 
+
+        if($validator->fails())
+        {
+            // return $validator->errors();
+            //Alert::error('Error al crear')->persistent("Cerrar");
+                return redirect()->back()
+                    ->withInput($request->only('nombre', 'descripcion'))
+                    ->withErrors($validator->errors());
+        }
+        $campos = $request->all();
+        DB::table('terminos_condiciones')->insert([
+            ['nombre' => $request->nombre, 
+            'descripcion' => $request->descripcion],
+        ]);
         return redirect()->back();
     }
 

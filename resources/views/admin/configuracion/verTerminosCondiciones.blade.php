@@ -38,7 +38,7 @@
                                    <tr>
                                    <td>{{$item->id}}</td>
                                    <td>{{$item->nombre}}</td>
-                                   <td>{{$item->descripción}}</td>
+                                   <td>{{$item->descripcion}}</td>
                                 </tr>
                                    @endforeach   
                              </tbody>
@@ -71,23 +71,24 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="#">
+        <form method="POST" action="{{route('crearTerminosCondiciones')}}" enctype="multipart/form-data">
+            {{ csrf_field() }}
                 <div class="modal-body">
                     <div class="col-12">
                         <fieldset class="form-label-group">
-                            <input type="text" class="form-control" id="floating-label1" placeholder="Nombre">
+                            <input type="text" class="form-control" id="floating-label1" name="nombre" placeholder="Nombre">
                             <label for="floating-label1">Nombre</label>
                         </fieldset>
                     </div>
                     <div class="col-12">
                         <fieldset class="form-label-group">
-                            <textarea class="form-control" id="label-textarea" rows="6" placeholder="Descripción"></textarea>
+                            <textarea class="form-control" id="label-textarea" rows="6" name="descripcion" placeholder="Descripción"></textarea>
                             <label for="label-textarea">Descripción</label>
                         </fieldset>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
             </form>
         </div>
