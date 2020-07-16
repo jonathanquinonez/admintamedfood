@@ -67,12 +67,21 @@ Route::get('/ver/Deliverys', 'Delivery\DeliveryController@index')->name('verDeli
 
 /*
 |--------------------------------------------------------------------------
-| Categoría
+| Categoría Tipo
 |--------------------------------------------------------------------------
  */
 
 Route::get('/ver/CategoriasTipo', 'Configuracion\ConfiguracionController@index')->name('verCategoriasTipo');
 Route::get('actualizarEstadoCategoriaTipo/{id}/{estado}', 'Configuracion\ConfiguracionController@actualizarEstadoCategoriaTipo')->name('actualizarEstadoCategoriaTipo');
+
+/*
+|--------------------------------------------------------------------------
+| Categoría Nutricion
+|--------------------------------------------------------------------------
+ */
+
+Route::get('/ver/CategoriasNutricion', 'Configuracion\ConfiguracionController@index2')->name('verCategoriasNutricion');
+Route::get('actualizarEstadoCategoriaNutricion/{id}/{estado}', 'Configuracion\ConfiguracionController@actualizarEstadoCategoriaNutricion')->name('actualizarEstadoCategoriaNutricion');
 
 
 
