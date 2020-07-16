@@ -101,10 +101,11 @@ class ConfiguracionController extends Controller
                     ->withInput($request->only('nombre', 'descripcion'))
                     ->withErrors($validator->errors());
         }
-        $campos = $request->all();
         DB::table('terminos_condiciones')->insert([
-            ['nombre' => $request->nombre, 
-            'descripcion' => $request->descripcion],
+            [
+                'nombre' => $request->nombre, 
+                'descripcion' => $request->descripcion
+            ],
         ]);
         return redirect()->back();
     }

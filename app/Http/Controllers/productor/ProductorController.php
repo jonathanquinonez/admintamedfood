@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\productor;
+namespace App\Http\Controllers\Productor;
 
 use Illuminate\Http\Request;
 use App\Productore;
@@ -59,6 +59,16 @@ class ProductorController extends Controller
     public function show($id)
     {
         //
+    }
+    /**
+     * Muestra el detalle del productos con la información de sus productos.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function detalleProductor($id)
+    {
+        return view('admin.productor.detalleProductor');
     }
 
     /**

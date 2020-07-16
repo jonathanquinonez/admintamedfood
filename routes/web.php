@@ -62,9 +62,14 @@ Route::get('/editar/perfil/{id}', 'User\UserController@editarPerfil')->name('edi
  */
 
 Route::get('/ver/Clientes', 'Cliente\ClienteController@index')->name('verClientes');
-Route::get('/ver/Productores', 'productor\ProductorController@index')->name('verProductor');
 Route::get('/ver/Deliverys', 'Delivery\DeliveryController@index')->name('verDelivery');
-
+/*
+|--------------------------------------------------------------------------
+| Productores
+|--------------------------------------------------------------------------
+ */
+Route::get('/ver/Productores', 'productor\ProductorController@index')->name('verProductor');
+Route::get('/detalle/productor/{id}', 'Productor\ProductorController@detalleProductor')->name('detalleProductor');
 /*
 |--------------------------------------------------------------------------
 | Configuraciones
