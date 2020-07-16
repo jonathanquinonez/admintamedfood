@@ -67,14 +67,14 @@ Route::post('/guardar/Clientes', 'Cliente\ClienteController@create')->name('crea
 
 /*
 |--------------------------------------------------------------------------
-| Productos
+| Productores
 |--------------------------------------------------------------------------
  */
 Route::get('/ver/Productores', 'productor\ProductorController@index')->name('verProductor');
 
 /*
 |--------------------------------------------------------------------------
-| Deliverys
+| Delivery
 |--------------------------------------------------------------------------
  */
 Route::get('/ver/Deliverys', 'Delivery\DeliveryController@index')->name('verDelivery');
