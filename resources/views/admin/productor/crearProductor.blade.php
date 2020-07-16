@@ -15,14 +15,52 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Detalle del Productor</h4>
+                                <h4 class="card-title">Crear Productor</h4>
                             </div>
                             <form method="POST" action="#">
                                 {{ csrf_field() }}
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
+                                        <h5>Datos de usuario</h5>
+                                        <div class="row">
+                                            <div class="col-xl-4 col-md-6 col-12">
+                                                <fieldset class="form-group">
+                                                    <label>Correo</label>
+                                                    <input type="text" class="form-control {{ $errors->has('email') ? ' has-error' : '' }}" required="" value="{{ old('email') }}" name="email">
+                                                    @if ($errors->has('email'))
+                                                        <span class="help-block badge bg-danger">
+                                                            <strong>{{ $errors->first('email') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-xl-4 col-md-6 col-12">
+                                                <fieldset class="form-group">
+                                                    <label>Contraseña</label>
+                                                    <input type="text" class="form-control {{ $errors->has('password') ? ' has-error' : '' }}" required="" value="{{ old('password') }}" name="password">
+                                                    @if ($errors->has('password'))
+                                                        <span class="help-block badge bg-danger">
+                                                        <strong>{{ $errors->first('password') }}</strong>
+                                                    </span>
+                                                    @endif
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body card-dashboard">
                                         <h5>Información del Productor</h5>
                                         <div class="row">
+                                            <div class="col-xl-4 col-md-6 col-12 mb-1">
+                                                <fieldset class="form-group">
+                                                    <label for="basicInputFile">Foto</label>
+                                                    <div class="custom-file">
+                                                        <input name="img_perfil" type="file" class="custom-file-input" id="inputGroupFile01">
+                                                        <label class="custom-file-label" for="inputGroupFile01"></label>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Nombre</label>
@@ -67,7 +105,7 @@
                                                     @endif
                                                 </fieldset>
                                             </div>
-                                            <div class="col-8">
+                                            <div class="col-12">
                                                 <fieldset class="form-group">
                                                     <label>Dirección</label>
                                                     <input type="text" class="form-control {{ $errors->has('direccion_usuario') ? ' has-error' : '' }}" required="" value="{{ old('direccion_usuario') }}" name="direccion_usuario">
@@ -79,58 +117,12 @@
                                                 </fieldset>
                                             </div>
                                             <div class="col-12">
-                                                <button type="submit" class="btn btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Actualizar</button>
+                                                <button type="submit" class="btn btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Guardar</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </form>
-
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Detalle de sus Productos</h4>
-                            </div>
-                          
-                              
-                                <div class="card-content">
-                                    <div class="card-body card-dashboard">
-                                        {{-- <h5>Información del Productor</h5> --}}
-                                        <div class="row">
-                                            <div class="table-responsive">
-                                                <table class="table table-striped dataex-html5-selectors">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Nombre</th>
-                                                            <th>Stock</th>
-                                                            <th>Medida</th>
-                                                            <th>Categoria</th>
-                                                        </tr>
-                                                    </thead>
-                                                    
-                                                    <tbody>
-                                                      
-                                                       <tr>
-                                                       
-                                                    </tr>
-                                                       
-                                                 </tbody>
-                    
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Nombre</th>
-                                                            <th>Stock</th>
-                                                            <th>Medida</th>
-                                                            <th>Categoria</th>
-                                                            
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                           
 
                         </div>
                     </div>
