@@ -146,7 +146,9 @@
                     {{-- <span class="badge badge badge-pill badge-success float-right mr-2">3</span> --}}
                 </a>
                     <ul class="menu-content">
-                        <li><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Apex">Categorías</span></a>
+                    <li><a href="{{route('verCategoriasTipo')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Apex">Categorías Por Tipo</span></a>
+                        </li>
+                        <li><a href="{{route('verCategoriasTipo')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Apex">Categorías Por Nutrición</span></a>
                         </li>
                         <li><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Chartjs">Info App</span></a>
                         </li>
