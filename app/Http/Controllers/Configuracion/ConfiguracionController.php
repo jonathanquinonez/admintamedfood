@@ -21,11 +21,11 @@ class ConfiguracionController extends Controller
     }
 
      /**
-     * Display a listing of the resource.
+     * verCategoriaNutricionla.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index2()
+    public function categoriaNutricional()
     {
         $dataConfiguracion = DB::table('categorias_nutricional')
         ->get();

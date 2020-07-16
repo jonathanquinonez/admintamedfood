@@ -17,6 +17,8 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Categoria Por Aporte Nutricional</h4>
+                    <button type="button" class="btn btn-success mr-1 mb-1" data-toggle="modal" data-target="#inlineForm"><i class="feather icon-check-square"></i> Nuevo</button>          
+
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
@@ -79,7 +81,38 @@
 </section>
 </div>
 </div>
-
+<!-- Modal -->
+<div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33">Crear Términos y Condiciones</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="#">
+                <div class="modal-body">
+                    <div class="col-12">
+                        <fieldset class="form-label-group">
+                            <input type="text" class="form-control" id="floating-label1" placeholder="Nombre">
+                            <label for="floating-label1">Nombre</label>
+                        </fieldset>
+                    </div>
+                    <div class="col-12">
+                        <fieldset class="form-label-group">
+                            <textarea class="form-control" id="label-textarea" rows="6" placeholder="Descripción"></textarea>
+                            <label for="label-textarea">Descripción</label>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 

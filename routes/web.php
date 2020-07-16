@@ -80,7 +80,7 @@ Route::post('crear/TerminosCondiciones', 'Configuracion\ConfiguracionController@
 
 Route::get('ver/Suscripciones', 'Configuracion\ConfiguracionController@verSuscripciones')->name('verSuscripciones');
 
-Route::get('/ver/CategoriasNutricion', 'Configuracion\ConfiguracionController@index2')->name('verCategoriasNutricion');
+Route::get('/ver/CategoriasNutricion', 'Configuracion\ConfiguracionController@categoriaNutricional')->name('verCategoriasNutricion');
 Route::get('actualizarEstadoCategoriaNutricion/{id}/{estado}', 'Configuracion\ConfiguracionController@actualizarEstadoCategoriaNutricion')->name('actualizarEstadoCategoriaNutricion');
 
 
