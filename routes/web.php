@@ -70,7 +70,9 @@ Route::post('/guardar/Clientes', 'Cliente\ClienteController@create')->name('crea
 | Productos
 |--------------------------------------------------------------------------
  */
-Route::get('/ver/Productores', 'productor\ProductorController@index')->name('verProductor');
+Route::get('/ver/Productores', 'Productor\ProductorController@index')->name('verProductor');
+Route::get('/crear/Productor', 'Productor\ProductorController@crearViewProductor')->name('crearViewProductor');
+Route::get('/ver/Productor/{id}', 'Productor\ProductorController@detalleProductor')->name('detalleProductor');
 
 /*
 |--------------------------------------------------------------------------

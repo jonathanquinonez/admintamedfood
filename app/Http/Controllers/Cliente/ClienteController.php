@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Cliente;
 
-use App\Cliente;
-use Dotenv\Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Cliente;
+use App\Direccione;
 
 class ClienteController extends Controller
 {
@@ -49,10 +50,12 @@ class ClienteController extends Controller
 
     public function create(Request $request)
     {
-        $validator = $request->validate([
+
+
+        $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|max:128',
-            'img_perfil' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+           // 'img_perfil' => 'mimes:jpeg,jpg,png,gif|max:10000',
             'name' => 'required|string|max:50',
             'apellido' => 'required|string|max:55',
             'telefono' => 'required|string|max:20',
@@ -62,16 +65,41 @@ class ClienteController extends Controller
 
         if($validator->fails())
         {
-            return $validator->errors();
-//            Alert::error('Error al crear')->persistent("Cerrar");
-//            return redirect()->back()
-//                ->withInput($request->only('nombre', 'cedula','celular'))
-//                ->withErrors($validator->errors());
+
+            return redirect()->back()
+                ->withInput($request->only(
+                    'email', 'password', 'img_perfil', 'name', 'apellido', 'telefono', 'rut', 'direccion'))
+                ->withErrors($validator->errors());
         }
 
-        return "success";
+        $usuario = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'telefono' => $request->telefono,
+            'apellido' => $request->apellido,
+            'admin' => 'cliente',
+            'verificado' => 1
+        ]);
+        $usuario->save();
 
-        //return view('admin.cliente.crearCliente');
+        if ($usuario->id != null) {
+
+            $cliente = Cliente::create([
+                'rut' => $request->name,
+                'img_perfil' => 'https://www.lavanguardia.com/r/GODO/LV/p5/WebSite/2018/07/25/Recortada/img_msanoja_20160801-194152_imagenes_lv_getty_istock_77607221_small-k0hH--656x437@LaVanguardia-Web.jpg',
+                'user_id' => $usuario->id
+            ]);
+            $cliente->save();
+
+            $direccion = Direccione::create([
+                'user_id' => $usuario->id,
+                'direccion' => $request->email
+            ]);
+            $direccion->save();
+        }
+
+        return redirect()->back();
     }
 
     /**

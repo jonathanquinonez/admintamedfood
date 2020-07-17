@@ -15,6 +15,8 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Productores</h4>
+                <a type="button" href="{{route('crearViewProductor')}}" class="btn btn-success mr-1 mb-1" ><i class="feather icon-check-square"></i> Nuevo</a>          
+
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">

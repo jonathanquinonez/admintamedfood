@@ -49,6 +49,16 @@ class ProductorController extends Controller
     {
         //
     }
+    /**
+     * Nos envia a la vista del productor para proceder a crearlo
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function crearViewProductor()
+    {
+        return view('admin.productor.crearProductor');
+    }
 
     /**
      * Display the specified resource.
