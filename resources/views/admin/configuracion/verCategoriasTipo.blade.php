@@ -86,7 +86,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel33">Crear Términos y Condiciones</h4>
+                <h4 class="modal-title" id="myModalLabel33">Crear Categoria De Tipos De Rutas</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -96,7 +96,7 @@
                 <div class="modal-body">
                     <div class="col-12">
                         <fieldset class="form-label-group">
-                            <input type="text" class="form-control" id="floating-label1" placeholder="Nombre">
+                            <input type="text" class="form-control" id="floating-label1" name="nombre" placeholder="Nombre">
                             <label for="floating-label1">Nombre</label>
                         </fieldset>
                     </div>
@@ -105,13 +105,6 @@
                         <fieldset class="form-label-group">
                             <input type="file" class="form-control" id="floating-label1" name="file1">
                             <label for="floating-label1">imagen</label>
-                        </fieldset>
-                    </div>
-
-                    <div class="col-12">
-                        <fieldset class="form-label-group">
-                            <input type="text" class="form-control" id="floating-label1" placeholder="estado">
-                            <label for="floating-label1">estado</label>
                         </fieldset>
                     </div>
 

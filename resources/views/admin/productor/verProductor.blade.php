@@ -26,6 +26,9 @@
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>Telefono</th>
+                                        <th>Verificado</th>
+                                        <th>Email</th>
+                                        <th>Ver</th>
                                   
                                     </tr>
                                 </thead>
@@ -36,7 +39,18 @@
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->apellido}}</td>
                                     <td>{{$item->telefono}}</td>
-                                   
+                                    <td>
+                                        @if($item->verificado == 1)
+                                        <div class="badge badge-success">Verificado</div>
+                                        @endif
+                                        @if($item->verificado != 1)
+                                        <div class="badge badge-danger">No Verificado</div>
+                                        @endif
+                                    </td>
+                                    <td>{{$item->email}}</td>
+                                    <td>
+                                    <a type="button" href="{{route('detalleProductor',[$item->id])}}" class="btn btn-success mr-1 mb-1"><i class="feather icon-check-square"></i> Ver</button>          
+                                    </td>
                                 </tr>
                                    @endforeach   
                              </tbody>
@@ -46,6 +60,9 @@
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>Telefono</th>
+                                        <th>Verificado</th>
+                                        <th>Email</th>
+                                        <th>Ver</th>
                                         
                                     </tr>
                                 </tfoot>

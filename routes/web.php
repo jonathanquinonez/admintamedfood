@@ -62,7 +62,21 @@ Route::get('/editar/perfil/{id}', 'User\UserController@editarPerfil')->name('edi
  */
 
 Route::get('/ver/Clientes', 'Cliente\ClienteController@index')->name('verClientes');
+Route::get('/crear/Clientes', 'Cliente\ClienteController@createView')->name('crearViewCliente');
+Route::post('/guardar/Clientes', 'Cliente\ClienteController@create')->name('crearCliente');
+
+/*
+|--------------------------------------------------------------------------
+| Productos
+|--------------------------------------------------------------------------
+ */
 Route::get('/ver/Productores', 'productor\ProductorController@index')->name('verProductor');
+
+/*
+|--------------------------------------------------------------------------
+| Deliverys
+|--------------------------------------------------------------------------
+ */
 Route::get('/ver/Deliverys', 'Delivery\DeliveryController@index')->name('verDelivery');
 
 /*
@@ -71,7 +85,7 @@ Route::get('/ver/Deliverys', 'Delivery\DeliveryController@index')->name('verDeli
 |--------------------------------------------------------------------------
  */
 
-Route::get('/ver/CategoriasTipo', 'Configuracion\ConfiguracionController@index')->name('verCategoriasTipo');
+Route::get('/ver/CategoriasTipo', 'Configuracion\ConfiguracionController@verCategoriTipo')->name('verCategoriasTipo');
 Route::get('actualizarEstadoCategoriaTipo/{id}/{estado}', 'Configuracion\ConfiguracionController@actualizarEstadoCategoriaTipo')->name('actualizarEstadoCategoriaTipo');
 Route::post('crear/CategoriaTipo', 'Configuracion\ConfiguracionController@crearCategoriaTipo')->name('crearCategoriaTipo');
 
@@ -84,8 +98,9 @@ Route::get('ver/Suscripciones', 'Configuracion\ConfiguracionController@verSuscri
 Route::post('crear/Suscripciones', 'Configuracion\ConfiguracionController@crearSuscripciones')->name('crearSuscripciones');
 
 
-Route::get('/ver/CategoriasNutricion', 'Configuracion\ConfiguracionController@categoriaNutricional')->name('verCategoriasNutricion');
+Route::get('/ver/CategoriasNutricion', 'Configuracion\ConfiguracionController@verCategoriaNutricional')->name('verCategoriasNutricion');
 Route::get('actualizarEstadoCategoriaNutricion/{id}/{estado}', 'Configuracion\ConfiguracionController@actualizarEstadoCategoriaNutricion')->name('actualizarEstadoCategoriaNutricion');
+Route::post('crear/CategoriaNutricion', 'Configuracion\ConfiguracionController@crearCategoriaNutricion')->name('crearCategoriaNutricion');
 
 
 
