@@ -52,6 +52,7 @@
     @yield('css')
     
 </head>
+
 <body class="vertical-layout vertical-menu-modern dark-layout 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="dark-layout">
 
     <!-- BEGIN: Header-->
@@ -123,31 +124,36 @@
                 <li class=" navigation-header"><span>Menu Administrativo</span>
                 </li>
                 <li class=" nav-item"><a href="{{route('verProductor')}}">
-                    <i class="feather icon-align-left"></i>
+                    <i class="feather  icon-box"></i>
                     <span class="menu-title" data-i18n="Email">Productores</span></a>
                 </li>
-                
+               
             <li class=" nav-item"><a href="{{route('verDelivery')}}">
-                <i class="feather icon-align-left">
+                <i class="feather icon-check-square">
                     </i><span class="menu-title" data-i18n="Email">Delivery</span></a>
                 </li>
 
-                <li class=" nav-item"><a href="#"><i class="feather icon-align-left"></i><span class="menu-title" data-i18n="Email">Receptores</span></a>
+                <li class=" nav-item"><a href="#"><i class="feather icon-check-circle"></i><span class="menu-title" data-i18n="Email">Receptores</span></a>
+                </li>
+              
+            <li class=" nav-item"><a href="{{route('verPedidos')}}">
+                <i class="feather icon-clipboard"></i>
+                <span class="menu-title" data-i18n="Email">Pedidos</span></a>
                 </li>
               
                 <li class=" nav-item"><a href="{{route('verClientes')}}">
-                <i class="feather icon-align-left"></i>
+                <i class="feather icon-user"></i>
                 <span class="menu-title" data-i18n="Email">Clientes</span></a>
                 </li>
             
                 <li class=" nav-item">
-                    <a href="#"><i class="feather icon-pie-chart"></i><span class="menu-title" data-i18n="Charts">Configuraciones</span>
+                    <a href="#"><i class="feather icon-plus-circle"></i><span class="menu-title" data-i18n="Charts">Configuraciones</span>
                     {{-- <span class="badge badge badge-pill badge-success float-right mr-2">3</span> --}}
                 </a>
                     <ul class="menu-content">
-                    <li><a href="{{route('verCategoriasTipo')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Apex">Categorías Por Tipo</span></a>
+                    <li><a href="{{route('verCategoriasTipo')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Apex">Cat. Por Tipo</span></a>
                         </li>
-                        <li><a href="{{route('verCategoriasNutricion')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Apex">Categorías Por Nutrición</span></a>
+                        <li><a href="{{route('verCategoriasNutricion')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Apex">Cat. Por Nutrición</span></a>
                         </li>
                         <li><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Chartjs">Info App</span></a>
                         </li>
@@ -182,10 +188,13 @@
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
         <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2020<a class="text-bold-800 grey darken-2" href="https://tamed.global/" target="_blank">Tamed,</a>All rights Reserved</span>
+ 
+                
+                <button  class="btn btn-primary btn-icon scroll-top" type="button"><i class="feather icon-arrow-up"></i></button>
             
-            <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="feather icon-arrow-up"></i></button>
         </p>
     </footer>
+    
     <!-- END: Footer-->
 
     @yield('script')

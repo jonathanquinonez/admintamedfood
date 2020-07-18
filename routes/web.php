@@ -67,7 +67,7 @@ Route::post('/guardar/Clientes', 'Cliente\ClienteController@create')->name('crea
 
 /*
 |--------------------------------------------------------------------------
-| Productos
+| Productor
 |--------------------------------------------------------------------------
  */
 Route::get('/ver/Productores', 'Productor\ProductorController@index')->name('verProductor');
@@ -104,6 +104,12 @@ Route::get('/ver/CategoriasNutricion', 'Configuracion\ConfiguracionController@ve
 Route::get('actualizarEstadoCategoriaNutricion/{id}/{estado}', 'Configuracion\ConfiguracionController@actualizarEstadoCategoriaNutricion')->name('actualizarEstadoCategoriaNutricion');
 Route::post('crear/CategoriaNutricion', 'Configuracion\ConfiguracionController@crearCategoriaNutricion')->name('crearCategoriaNutricion');
 
-
+/*
+|--------------------------------------------------------------------------
+| Pedidos
+|--------------------------------------------------------------------------
+ */
+Route::get('/ver/Pedidos', 'Pedido\PedidoController@verPedido')->name('verPedidos');
+Route::get('crear/Pedidos', 'Pedido\PedidoController@crearPedido')->name('crearPedido');
 
 
