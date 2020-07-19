@@ -50,12 +50,12 @@
                                    <td>
                                     @if($item->estado == 1)
                                    <a href="{{route('actualizarEstadoCategoriaTipo',[$item->id,$item->estado])}}">
-                                    <div class="badge badge-danger">Inhabilitado</div>
+                                    <div class="badge badge-danger">Inhabilitar</div>
                                     </a>
                                     @endif
                                     @if($item->estado != 1)
                                 <a href="{{route('actualizarEstadoCategoriaTipo',[$item->id,$item->estado])}}">
-                                    <div class="badge badge-success">Habilitado</div>
+                                    <div class="badge badge-success">Habilitar</div>
                                     </a>
                                     @endif
                                     </td>
@@ -86,28 +86,34 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel33">Crear</h4>
+                <h4 class="modal-title" id="myModalLabel33">Crear Categoria De Tipos De Rutas</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="#">
+            <form method="POST" action="{{route('crearCategoriaTipo')}}" enctype="multipart/form-data">
+                {{ csrf_field() }}
                 <div class="modal-body">
                     <div class="col-12">
                         <fieldset class="form-label-group">
-                            <input type="text" class="form-control" id="floating-label1" placeholder="Nombre">
+                            <input type="text" class="form-control" id="floating-label1" name="nombre" placeholder="Nombre">
                             <label for="floating-label1">Nombre</label>
                         </fieldset>
                     </div>
+                    
                     <div class="col-12">
-                        <fieldset class="form-label-group">
-                            <textarea class="form-control" id="label-textarea" rows="6" placeholder="Descripción"></textarea>
-                            <label for="label-textarea">Descripción</label>
+                        <fieldset class="form-group">
+                            <label for="basicInputFile">Foto</label>
+                            <div class="custom-file">
+                                <input name="img_perfil" type="file" class="custom-file-input" id="inputGroupFile01">
+                                <label class="custom-file-label" for="inputGroupFile01"></label>
+                            </div>
                         </fieldset>
                     </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
             </form>
         </div>

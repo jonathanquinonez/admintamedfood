@@ -15,7 +15,7 @@ class ConfiguracionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function verCategoriTipo()
     {
         $dataConfiguracion = DB::table('categorias_tipos')
         ->get();
@@ -27,7 +27,7 @@ class ConfiguracionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function categoriaNutricional()
+    public function verCategoriaNutricional()
     {
         $dataConfiguracion = DB::table('categorias_nutricional')
         ->get();
@@ -109,6 +109,99 @@ class ConfiguracionController extends Controller
         ]);
         return redirect()->back();
     }
+
+    /**
+     * Crear suscripciones a partir de un modal.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function crearSuscripciones(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|string|max:50',
+            'detalle' => 'required|string|max:50',
+            'porcentaje' => 'required|string|max:50',
+        ]); 
+
+        if($validator->fails())
+        {
+            // return $validator->errors();
+            //Alert::error('Error al crear')->persistent("Cerrar");
+                return redirect()->back()
+                ->withInput($request->only('nombre','detalle','porcentaje'))
+                ->withErrors($validator->errors());
+        }
+        
+        DB::table('suscripciones')->insert([
+            ['nombre' => $request->nombre, 
+            'detalle' => $request->detalle,
+            'porcentaje' => $request->porcentaje,
+            'img' => 'https://picsum.photos/200/300',
+            'terminos_condiciones_id' => 1],
+        ]);
+        return redirect()->back();
+    }
+      /**
+     * Crear las categorias_tipo a partir de un modal.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function crearCategoriaTipo(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|string|max:50',
+        ]); 
+
+        if($validator->fails())
+        {
+            // return $validator->errors();
+            //Alert::error('Error al crear')->persistent("Cerrar");
+                return redirect()->back()
+                ->withInput($request->only('nombre'))
+                ->withErrors($validator->errors());
+        }
+        
+        DB::table('categorias_tipos')->insert([
+            ['nombre' => $request->nombre, 
+            'img' => 'https://picsum.photos/200/300',
+            'estado' => 1],
+        ]);
+        return redirect()->back();
+    }
+    
+        /**
+     * Crear las categorias_tipo a partir de un modal.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function crearCategoriaNutricion(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|string|max:50',
+        ]); 
+
+        if($validator->fails())
+        {
+            // return $validator->errors();
+            //Alert::error('Error al crear')->persistent("Cerrar");
+                return redirect()->back()
+                ->withInput($request->only('nombre'))
+                ->withErrors($validator->errors());
+        }
+        
+        DB::table('categorias_nutricional')->insert([
+            ['nombre' => $request->nombre, 
+            'img' => 'https://picsum.photos/200/300',
+            'estado' => 1],
+        ]);
+        return redirect()->back();
+    }
+    
+
 
     /**
      * Display the specified resource.

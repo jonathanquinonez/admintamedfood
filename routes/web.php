@@ -67,7 +67,7 @@ Route::post('/guardar/Clientes', 'Cliente\ClienteController@create')->name('crea
 
 /*
 |--------------------------------------------------------------------------
-| Productos
+| Productor
 |--------------------------------------------------------------------------
  */
 Route::get('/ver/Productores', 'Productor\ProductorController@index')->name('verProductor');
@@ -87,18 +87,29 @@ Route::get('/ver/Deliverys', 'Delivery\DeliveryController@index')->name('verDeli
 |--------------------------------------------------------------------------
  */
 
-Route::get('/ver/CategoriasTipo', 'Configuracion\ConfiguracionController@index')->name('verCategoriasTipo');
+Route::get('/ver/CategoriasTipo', 'Configuracion\ConfiguracionController@verCategoriTipo')->name('verCategoriasTipo');
 Route::get('actualizarEstadoCategoriaTipo/{id}/{estado}', 'Configuracion\ConfiguracionController@actualizarEstadoCategoriaTipo')->name('actualizarEstadoCategoriaTipo');
+Route::post('crear/CategoriaTipo', 'Configuracion\ConfiguracionController@crearCategoriaTipo')->name('crearCategoriaTipo');
+
 
 Route::get('ver/TerminosCondiciones', 'Configuracion\ConfiguracionController@verTerminosCondiciones')->name('verTerminosCondiciones');
 Route::post('crear/TerminosCondiciones', 'Configuracion\ConfiguracionController@crearTerminosCondiciones')->name('crearTerminosCondiciones');
 
 
 Route::get('ver/Suscripciones', 'Configuracion\ConfiguracionController@verSuscripciones')->name('verSuscripciones');
+Route::post('crear/Suscripciones', 'Configuracion\ConfiguracionController@crearSuscripciones')->name('crearSuscripciones');
 
-Route::get('/ver/CategoriasNutricion', 'Configuracion\ConfiguracionController@categoriaNutricional')->name('verCategoriasNutricion');
+
+Route::get('/ver/CategoriasNutricion', 'Configuracion\ConfiguracionController@verCategoriaNutricional')->name('verCategoriasNutricion');
 Route::get('actualizarEstadoCategoriaNutricion/{id}/{estado}', 'Configuracion\ConfiguracionController@actualizarEstadoCategoriaNutricion')->name('actualizarEstadoCategoriaNutricion');
+Route::post('crear/CategoriaNutricion', 'Configuracion\ConfiguracionController@crearCategoriaNutricion')->name('crearCategoriaNutricion');
 
-
+/*
+|--------------------------------------------------------------------------
+| Pedidos
+|--------------------------------------------------------------------------
+ */
+Route::get('/ver/Pedidos', 'Pedido\PedidoController@verPedido')->name('verPedidos');
+Route::get('crear/Pedidos', 'Pedido\PedidoController@crearPedido')->name('crearPedido');
 
 
