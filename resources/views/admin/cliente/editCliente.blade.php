@@ -17,7 +17,7 @@
                             <div class="card-header">
                                 <h4 class="card-title">Crear Clientes</h4>
                             </div>
-                            <form method="POST" action="{{ route('crearCliente') }}">
+                            <form method="POST" action="{{ route('editarCliente', $data_user[0]->id) }}">
                                 {{ csrf_field() }}
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
@@ -25,19 +25,8 @@
                                         <div class="row">
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <fieldset class="form-group">
-                                                    <label>Correo</label>
-                                                    <input type="text" class="form-control {{ $errors->has('email') ? ' has-error' : '' }}" required="" value="{{ old('email') }}" name="email">
-                                                    @if ($errors->has('email'))
-                                                        <span class="help-block badge bg-danger">
-                                                            <strong>{{ $errors->first('email') }}</strong>
-                                                        </span>
-                                                    @endif
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-xl-4 col-md-6 col-12">
-                                                <fieldset class="form-group">
                                                     <label>Contraseña</label>
-                                                    <input type="password" class="form-control {{ $errors->has('password') ? ' has-error' : '' }}" required="" value="{{ old('password') }}" name="password">
+                                                    <input type="password" class="form-control {{ $errors->has('password') ? ' has-error' : '' }}" value="" name="password">
                                                     @if ($errors->has('password'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('password') }}</strong>
@@ -56,7 +45,7 @@
                                                 <fieldset class="form-group">
                                                     <label for="basicInputFile">Foto</label>
                                                     <div class="custom-file">
-                                                        <input name="img_perfil" type="file" class="custom-file-input" id="inputGroupFile01">
+                                                        <input value="{{ $data_user[0]->img_perfil }}" name="img_perfil" type="file" class="custom-file-input" id="inputGroupFile01">
                                                         <label class="custom-file-label" for="inputGroupFile01"></label>
                                                     </div>
                                                 </fieldset>
@@ -64,7 +53,7 @@
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Nombre</label>
-                                                    <input type="text" class="form-control {{ $errors->has('name') ? ' has-error' : '' }}" required="" value="{{ old('name') }}" name="name">
+                                                    <input type="text" class="form-control {{ $errors->has('name') ? ' has-error' : '' }}" required="" value="{{ $data_user[0]->name }}" name="name">
                                                     @if ($errors->has('name'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('name') }}</strong>
@@ -75,7 +64,7 @@
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Apellido</label>
-                                                    <input type="text" class="form-control {{ $errors->has('apellido') ? ' has-error' : '' }}" required="" value="{{ old('apellido') }}" name="apellido">
+                                                    <input type="text" class="form-control {{ $errors->has('apellido') ? ' has-error' : '' }}" required="" value="{{ $data_user[0]->apellido }}" name="apellido">
                                                     @if ($errors->has('apellido'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('apellido') }}</strong>
@@ -86,7 +75,7 @@
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Telefono</label>
-                                                    <input type="text" class="form-control {{ $errors->has('telefono') ? ' has-error' : '' }}" required="" value="{{ old('telefono') }}" name="telefono">
+                                                    <input type="text" class="form-control {{ $errors->has('telefono') ? ' has-error' : '' }}" required="" value="{{ $data_user[0]->telefono }}" name="telefono">
                                                     @if ($errors->has('telefono'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('telefono') }}</strong>
@@ -97,7 +86,7 @@
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <fieldset class="form-group">
                                                     <label>DNI</label>
-                                                    <input type="text" class="form-control {{ $errors->has('rut') ? ' has-error' : '' }}" required="" value="{{ old('rut') }}" name="rut">
+                                                    <input type="text" class="form-control {{ $errors->has('rut') ? ' has-error' : '' }}" required="" value="{{ $data_user[0]->rut }}" name="rut">
                                                     @if ($errors->has('rut'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('rut') }}</strong>
@@ -108,7 +97,7 @@
                                             <div class="col-12">
                                                 <fieldset class="form-group">
                                                     <label>Dirección</label>
-                                                    <input type="text" class="form-control {{ $errors->has('direccion') ? ' has-error' : '' }}" required="" value="{{ old('direccion') }}" name="direccion">
+                                                    <input type="text" class="form-control {{ $errors->has('direccion') ? ' has-error' : '' }}" value="{{ ($data_user[0]->direccion != null) ?$data_user[0]->direccion:'' }}" name="direccion">
                                                     @if ($errors->has('direccion'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('direccion') }}</strong>
@@ -117,8 +106,8 @@
                                                 </fieldset>
                                             </div>
                                             <div class="col-12">
-                                                <button type="submit" class="btn btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Guardar</button>
-                                                <a href="{{ url()->previous() }}" class="btn btn-danger waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Cancelar</a>
+                                                <button type="submit" class="btn btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Actualizar</button>
+                                                <a href="{{ url()->previous() }}" class="btn btn-danger waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Volver</a>
                                             </div>
                                         </div>
                                     </div>

@@ -18,7 +18,7 @@
                 <div class="card-header">
                     <h4 class="card-title">Clientes</h4>
                     <div>
-                        <a href="{{route('crearViewCliente')}}" class="btn btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Nuevo</a>
+                        <a href="{{route('crearViewCliente')}}" class="btn btn-success waves-effect waves-light"><i class="feather icon-check-square"></i>&nbsp; Nuevo</a>
                     </div>
                 </div>
                 <div class="card-content">
@@ -47,16 +47,23 @@
                                         <td>{{$item->telefono}}</td>
                                         <td>{{$item->rut}}</td>
                                         <td><img height="50" width="50" src="{{$item->img_perfil}}"></td>
-                                        <td>{{$item->verificado}}</td>
+                                        <td>
+                                            @if($item->verificado)
+                                                <div class="badge badge-success">Si</div>
+                                            @else
+                                                <div class="badge badge-warning">No</div>
+                                            @endif
+                                        </td>
                                         <td>
                                            @if($item->suscripcion_id)
-                                               <i class="fa fa-circle font-small-3 text-success mr-50"></i>
+                                                <div class="badge badge-success">Si</div>
                                            @else
-                                                <i class="fa fa-circle font-small-3 text-danger mr-50"></i>
+                                                <div class="badge badge-warning">No</div>
                                            @endif
                                         </td>
                                         <td>
-                                            <a href="{{route('crearCliente')}}" class="btn btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Editar</a>
+                                            <a href="{{route('editarViewCliente', $item->id)}}" class="btn btn-sm btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Ver</a>
+                                            <a href="{{route('editarViewCliente', $item->id)}}" class="btn btn-sm btn-danger waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Borrar</a>
                                         </td>
                                     </tr>
                                    @endforeach   
@@ -75,6 +82,8 @@
                                     </tr>
                                 </tfoot>
                             </table>
+
+                            {{ $dataCliente->links() }}
                         </div>
                     </div>
                 </div>

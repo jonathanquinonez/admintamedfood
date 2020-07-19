@@ -32,7 +32,7 @@ class User extends Authenticatable
 		'verificado',
 		'bloqueado',
 		'notificaciones',
-
+        'password'
     ];
     
     public function getDireccionAttribute($valor)

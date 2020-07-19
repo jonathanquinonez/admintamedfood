@@ -63,7 +63,9 @@ Route::get('/editar/perfil/{id}', 'User\UserController@editarPerfil')->name('edi
 
 Route::get('/ver/Clientes', 'Cliente\ClienteController@index')->name('verClientes');
 Route::get('/crear/Clientes', 'Cliente\ClienteController@createView')->name('crearViewCliente');
-Route::post('/guardar/Clientes', 'Cliente\ClienteController@create')->name('crearCliente');
+Route::post('/crear/Clientes', 'Cliente\ClienteController@create')->name('crearCliente');
+Route::get('/editar/Clientes/{id}', 'Cliente\ClienteController@editView')->name('editarViewCliente');
+Route::post('/editar/Clientes/{id}', 'Cliente\ClienteController@edit')->name('editarCliente');
 
 /*
 |--------------------------------------------------------------------------
