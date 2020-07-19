@@ -31,23 +31,33 @@
                                         <th>Apellido</th>
                                         <th>Telefono</th>
                                         <th>rut</th>
-                                        <th>Imagen</th>
                                         <th>Direccion</th>
+                                        <th>Imagen</th>
                                         <th>Total</th>
                                         <th>Fecha de pedido</th>
+                                        <th>Estado</th>
                                     </tr>
                                 </thead>
                                 
                                 <tbody>
-                                  @foreach ($dataConfiguracion as $item)
+                                  @foreach ($dataPedidos as $item)
                                   <td>{{$item->name}}</td>
                                   <td>{{$item->apellido}}</td>
                                   <td>{{$item->telefono}}</td>
                                   <td>{{$item->rut}}</td>
                                   <td>{{$item->direccion}}</td>
-                                  <td>{{$item->img_perfil}}</td>
+                                   <td><img height="50" width="50" src="{{$item->img_perfil}}"></td>
                                   <td>{{$item->total}}</td>
-                                  <td>{{$item->created_at}}</td>                                  
+                                  <td>{{$item->fecha_pedido}}</td>                                  
+                                  <td>
+                                      @if ($item->nombre_estado == 1)
+                                          <div class="badge badge-success">Activo</div>
+                                      @endif
+
+                                      @if ($item->nombre_estado != 1)
+                                      <div class="badge badge-danger">INACTIVO</div>
+                                      @endif
+                                  </td>                                  
                                   @endforeach   
                              </tbody>
 
@@ -57,10 +67,11 @@
                                         <th>Apellido</th>
                                         <th>Telefono</th>
                                         <th>rut</th>
-                                        <th>Imagen</th>
                                         <th>Direccion</th>
+                                        <th>Imagen</th>
                                         <th>Total</th>
                                         <th>Fecha de pedido</th>
+                                        <th>Estado</th>
 
                                     </tr>
                                 </tfoot>

@@ -17,10 +17,10 @@ class PedidoController extends Controller
      */
     public function verPedido()
     {
-        $dataConfiguracion = DB::table('pedidos')
+        $dataPedidos = DB::table('pedidos')
         ->join('clientes','clientes.id','=','pedidos.cliente_id')
         ->join('users','users.id','=','clientes.user_id')
-        //->join('estados','estados.id','=','pedidos.estado_id')
+        ->join('estados','estados.id','=','pedidos.estado_id')
         ->select('pedidos.created_at as fecha_pedido',
         'pedidos.total',
         'users.name',
@@ -29,10 +29,11 @@ class PedidoController extends Controller
         'clientes.rut',
         'clientes.direccion',
         'clientes.img_perfil',
-        'users.'
+        'estados.nombre as nombre_estado'
         )
         ->get();
-        return view('admin.pedidos.verPedidos',compact('dataConfiguracion'));
+        
+        return view('admin.pedidos.verPedidos',compact('dataPedidos'));
 
     }
 
