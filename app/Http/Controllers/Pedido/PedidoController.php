@@ -20,7 +20,7 @@ class PedidoController extends Controller
         $dataConfiguracion = DB::table('pedidos')
         ->join('clientes','clientes.id','=','pedidos.cliente_id')
         ->join('users','users.id','=','clientes.user_id')
-        ->join('estados','estados.id','=','pedidos.estado_id')
+        //->join('estados','estados.id','=','pedidos.estado_id')
         ->select('pedidos.created_at as fecha_pedido',
         'pedidos.total',
         'users.name',
@@ -28,7 +28,8 @@ class PedidoController extends Controller
         'users.telefono',
         'clientes.rut',
         'clientes.direccion',
-        'clientes.img_perfil'
+        'clientes.img_perfil',
+        'users.'
         )
         ->get();
         return view('admin.pedidos.verPedidos',compact('dataConfiguracion'));

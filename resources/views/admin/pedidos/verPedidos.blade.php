@@ -28,30 +28,39 @@
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Telefono</th>
                                         <th>rut</th>
                                         <th>Imagen</th>
                                         <th>Direccion</th>
                                         <th>Total</th>
+                                        <th>Fecha de pedido</th>
                                     </tr>
                                 </thead>
                                 
                                 <tbody>
                                   @foreach ($dataConfiguracion as $item)
                                   <td>{{$item->name}}</td>
+                                  <td>{{$item->apellido}}</td>
+                                  <td>{{$item->telefono}}</td>
                                   <td>{{$item->rut}}</td>
                                   <td>{{$item->direccion}}</td>
                                   <td>{{$item->img_perfil}}</td>
                                   <td>{{$item->total}}</td>
+                                  <td>{{$item->created_at}}</td>                                  
                                   @endforeach   
                              </tbody>
 
                                 <tfoot>
                                     <tr>
                                         <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Telefono</th>
                                         <th>rut</th>
                                         <th>Imagen</th>
                                         <th>Direccion</th>
                                         <th>Total</th>
+                                        <th>Fecha de pedido</th>
 
                                     </tr>
                                 </tfoot>
