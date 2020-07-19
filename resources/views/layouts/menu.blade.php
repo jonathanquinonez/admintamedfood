@@ -106,7 +106,7 @@
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mr-auto"><a class="navbar-brand" href="{{route('home')}}">
                         <div class="brand-logo"></div>
-                        <h2 class="brand-text mb-0">Tamed</h2>
+                       
                     </a></li>
                 </ul>
         </div>

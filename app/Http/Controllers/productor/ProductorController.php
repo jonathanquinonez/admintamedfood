@@ -16,10 +16,10 @@ class ProductorController extends Controller
      */
     public function index()
     {
-         $dataProductor = DB::table('productores')
-         ->join('users','users.id','=','productores.user_id')
-         ->select('users.*')
-         ->get();
+            $dataProductor = DB::table('productores')
+            ->join('users','users.id','=','productores.user_id')
+            ->select('users.*')
+            ->get();
 
         
          return view('admin.productor.verProductor', compact('dataProductor'));
