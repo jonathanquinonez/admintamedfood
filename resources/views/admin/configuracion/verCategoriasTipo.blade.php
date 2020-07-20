@@ -72,6 +72,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
+                            {{ $dataConfiguracion->links() }}
                         </div>
                     </div>
                 </div>
