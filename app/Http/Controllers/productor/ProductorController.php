@@ -18,7 +18,7 @@ class ProductorController extends Controller
     {
             $dataProductor = DB::table('productores')
             ->join('users','users.id','=','productores.user_id')
-            ->select('users.*')
+            ->select('users.*') 
             ->get();
 
         

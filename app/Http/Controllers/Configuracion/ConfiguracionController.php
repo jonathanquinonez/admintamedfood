@@ -18,7 +18,8 @@ class ConfiguracionController extends Controller
     public function verCategoriTipo()
     {
         $dataConfiguracion = DB::table('categorias_tipos')
-        ->get();
+
+        ->paginate(1);
         return view('admin.configuracion.verCategoriasTipo',compact('dataConfiguracion'));
     }
 

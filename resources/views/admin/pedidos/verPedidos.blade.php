@@ -36,6 +36,8 @@
                                         <th>Total</th>
                                         <th>Fecha de pedido</th>
                                         <th>Estado</th>
+                                        <th>Ver</th>
+
                                     </tr>
                                 </thead>
                                 
@@ -57,6 +59,9 @@
                                       @if ($item->nombre_estado != 1)
                                       <div class="badge badge-danger">INACTIVO</div>
                                       @endif
+                                      <td>
+                                        <a type="button" href="{{route('detallePedido',[$item->id])}}" class="btn btn-success mr-1 mb-1"><i class="feather icon-check-square"></i> Ver</button>          
+                                        </td>
                                   </td>                                  
                                   @endforeach   
                              </tbody>
@@ -72,6 +77,7 @@
                                         <th>Total</th>
                                         <th>Fecha de pedido</th>
                                         <th>Estado</th>
+                                        <th>Ver</th>
 
                                     </tr>
                                 </tfoot>

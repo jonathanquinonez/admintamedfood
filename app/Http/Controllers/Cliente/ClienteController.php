@@ -96,7 +96,7 @@ class ClienteController extends Controller
                 'user_id' => $usuario->id,
                 'direccion' => $request->direccion
             ]);
-            $direccion->save();
+                
         }
 
         return redirect()->action('Cliente\ClienteController@index');

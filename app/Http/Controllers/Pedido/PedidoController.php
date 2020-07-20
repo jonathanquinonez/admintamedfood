@@ -22,6 +22,7 @@ class PedidoController extends Controller
         ->join('users','users.id','=','clientes.user_id')
         ->join('estados','estados.id','=','pedidos.estado_id')
         ->select('pedidos.created_at as fecha_pedido',
+        'pedidos.id',
         'pedidos.total',
         'users.name',
         'users.apellido',
@@ -108,6 +109,18 @@ class PedidoController extends Controller
     public function show($id)
     {
         //
+    }
+
+    /**
+     * Muestra el detalle de los pedidos con la información de sus productos.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function detallePedido($id)
+    {
+        return view('admin.pedidos.detallePedido');
     }
 
     /**
