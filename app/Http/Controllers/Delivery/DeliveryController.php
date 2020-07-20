@@ -18,12 +18,10 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        $dataDelivery = DB::table('delivery')
+        $dataDelivery = Delivery::Select('users.*', 'delivery.id as user_id')
         ->join('users','users.id','=','delivery.user_id')
-        ->select('users.*', 'delivery.id as user_id'
         // 'suscripciones.nombre as nombre_suscripcion',
         // 'suscripciones.detalle as detalle_suscripcion'
-        )
         ->paginate(3);
 
 
@@ -63,10 +61,14 @@ class DeliveryController extends Controller
     {
 
         $dataDelivery = Delivery::select(
-            'users.*', 'direcciones.direccion as direccion_user', 'direcciones.detalle as detalle_direccion')
+            'users.*', 
+            'direcciones.direccion as direccion_user', 
+            'direcciones.latitud', 
+            'direcciones.longitud', 
+            'direcciones.detalle as detalle_direccion')
             ->join('users', 'users.id', '=', 'delivery.user_id')
             ->Leftjoin('direcciones','direcciones.user_id','=','users.id')
-            ->where('users.id', '=', $id)
+            ->where('delivery.id', '=', $id)
             ->first();
         $dataPedidos = Pedido::join('clientes','clientes.id','=','pedidos.cliente_id')
             ->join('users','users.id','=','clientes.user_id')
@@ -85,6 +87,7 @@ class DeliveryController extends Controller
             'estados.nombre as nombre_estado'
             )
             ->get();
+            //dd($dataDelivery);
             return view('admin.Delivery.editarDelivery', compact('dataDelivery', 'dataPedidos'));
     }
 

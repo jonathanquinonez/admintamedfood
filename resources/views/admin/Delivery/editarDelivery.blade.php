@@ -3,6 +3,11 @@
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{URL::asset('app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{URL::asset('app-assets/css/colors.css')}}">
+    <style>
+    #map{
+        height: 100%;
+      }
+      </style>
 @endsection
 
 
@@ -17,7 +22,7 @@
                             <div class="card-header">
                                 <h4 class="card-title">Detalle del Delivery</h4>
                             </div>
-                            <form method="POST" action="#">
+                            <form method="POST" action="#" name="f1" id="f1">
                                 {{ csrf_field() }}
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
@@ -70,7 +75,7 @@
                                             <div class="col-4">
                                                 <fieldset class="form-group">
                                                     <label>Dirección</label>
-                                                    <input type="text" class="form-control {{ $errors->has('direccion_user') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->direccion_user }}" name="direccion_user">
+                                                    <input type="text" class="form-control {{ $errors->has('direccion_user') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->direccion_user }}" name="direccion_user" id="direccion_user">
                                                     @if ($errors->has('direccion_user'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('direccion_user') }}</strong>
@@ -80,14 +85,50 @@
                                             </div>
                                             <div class="col-4">
                                                 <fieldset class="form-group">
-                                                    <label>Dirección</label>
-                                                    <input type="text" class="form-control {{ $errors->has('detalle_direccion') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->detalle_direccion }}" name="detalle_direccion">
+                                                    <label>Detalle Dirección</label>
+                                                    <input type="text" class="form-control {{ $errors->has('detalle_direccion') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->detalle_direccion }}" name="detalle_direccion" >
                                                     @if ($errors->has('detalle_direccion'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('detalle_direccion') }}</strong>
                                                     </span>
                                                     @endif
                                                 </fieldset>
+                                            </div>
+                                            <div class="col-4">
+                                                <fieldset class="form-group">
+                                                    <label>Latitud</label>
+                                                    <input type="text" class="form-control {{ $errors->has('latitud') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->latitud }}" name="latitud" id="latitud">
+                                                    @if ($errors->has('latitud'))
+                                                        <span class="help-block badge bg-danger">
+                                                        <strong>{{ $errors->first('latitud') }}</strong>
+                                                    </span>
+                                                    @endif
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-4">
+                                                <fieldset class="form-group">
+                                                    <label>Longitud</label>
+                                                    <input type="text" class="form-control {{ $errors->has('longitud') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->longitud }}" name="longitud" id="longitud">
+                                                    @if ($errors->has('longitud'))
+                                                        <span class="help-block badge bg-danger">
+                                                        <strong>{{ $errors->first('longitud') }}</strong>
+                                                    </span>
+                                                    @endif
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-12" >
+                                            <div>
+                                                <div id="pac-container">
+                                                <input id="pac-input" type="text" class="form-control"
+                                                    placeholder="Buscar dsirección">
+                                                </div>
+                                            </div>
+                                            <div id="map" style="height: 200px"></div>
+                                            <div id="infowindow-content">
+                                                <img src="" width="16" height="16" id="place-icon">
+                                                <span id="place-name"  class="title"></span><br>
+                                                <span id="place-address"></span>
+                                            </div>
                                             </div>
                                             <div class="col-12">
                                                 <button type="submit" class="btn btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Actualizar</button>
@@ -181,13 +222,106 @@
 @endsection
 
 @section('script')
-    <script src="{{URL::asset('app-assets/js/scripts/datatables/datatable.js')}}"></script>
-    <script src="{{URL::asset('app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
-    <script src="{{URL::asset('app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js')}}"></script>
-    <script src="{{URL::asset('app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
-    <script src="{{URL::asset('app-assets/vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
-    <script src="{{URL::asset('app-assets/vendors/js/tables/datatable/vfs_fonts.')}}"></script>
-    <script src="{{URL::asset('app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
-    <script src="{{URL::asset('app-assets/vendors/js/tables/datatable/datatables.buttons.min.js')}}"></script>
-    <script src="{{URL::asset('app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
+<script>
+    // This example requires the Places library. Include the libraries=places
+    // parameter when you first load the API. For example:
+    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -33.8688, lng: 151.2195},
+        zoom: 13
+      });
+      var card = document.getElementById('pac-card');
+      var input = document.getElementById('pac-input');
+      var types = document.getElementById('type-selector');
+      var strictBounds = document.getElementById('strict-bounds-selector');
+
+      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
+      var autocomplete = new google.maps.places.Autocomplete(input);
+
+      // Bind the map's bounds (viewport) property to the autocomplete object,
+      // so that the autocomplete requests use the current map bounds for the
+      // bounds option in the request.
+      autocomplete.bindTo('bounds', map);
+
+      // Set the data fields to return when the user selects a place.
+      autocomplete.setFields(
+          ['address_components', 'geometry', 'icon', 'name']);
+
+      var infowindow = new google.maps.InfoWindow();
+      var infowindowContent = document.getElementById('infowindow-content');
+      infowindow.setContent(infowindowContent);
+      var marker = new google.maps.Marker({
+        map: map,
+        anchorPoint: new google.maps.Point(0, -29)
+      });
+
+      autocomplete.addListener('place_changed', function() {
+        infowindow.close();
+        marker.setVisible(false);
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+          // User entered the name of a Place that was not suggested and
+          // pressed the Enter key, or the Place Details request failed.
+          window.alert("No details available for input: '" + place.name + "'");
+          return;
+        }
+
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+          map.fitBounds(place.geometry.viewport);
+        } else {
+          map.setCenter(place.geometry.location);
+          map.setZoom(17);  // Why 17? Because it looks good.
+        }
+        marker.setPosition(place.geometry.location);
+  
+        marker.setVisible(true);
+
+        var address = '';
+        if (place.address_components) {
+          address = [
+            (place.address_components[0] && place.address_components[0].short_name || ''),
+            (place.address_components[1] && place.address_components[1].short_name || ''),
+            (place.address_components[2] && place.address_components[2].short_name || '')
+          ].join(' ');
+        }
+        //document.f1.detalle_direccion.value = '';
+        infowindowContent.children['place-icon'].src = place.icon;
+        infowindowContent.children['place-name'].textContent = place.name;
+        infowindowContent.children['place-address'].textContent = address;
+        infowindow.open(map, marker);
+        document.f1.direccion_user.value = address;
+        document.f1.latitud.value = place.lat;
+        document.f1.longitud.value = place.lng;
+        console.log("direccion",document.f1.direccion_user.value);
+        console.log("lng",map.location.lng);
+        console.log("lat",place.geometry.location.lat);
+      });
+
+      // Sets a listener on a radio button to change the filter type on Places
+      // Autocomplete.
+      function setupClickListener(id, types) {
+        var radioButton = document.getElementById(id);
+        radioButton.addEventListener('click', function() {
+          autocomplete.setTypes(types);
+        });
+      }
+
+      setupClickListener('changetype-all', []);
+      setupClickListener('changetype-address', ['address']);
+      setupClickListener('changetype-establishment', ['establishment']);
+      setupClickListener('changetype-geocode', ['geocode']);
+
+      document.getElementById('use-strict-bounds')
+          .addEventListener('click', function() {
+            console.log('Checkbox clicked! New state=' + this.checked);
+            autocomplete.setOptions({strictBounds: this.checked});
+          });
+    }
+  </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFZn-_2DpGEgdfnXX4gywzaGRS01HgA-U&libraries=places&callback=initMap"
+    type="text/javascript"></script>
 @endsection
