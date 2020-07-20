@@ -28,20 +28,38 @@
                                         <th>telefono</th>
                                         <th>Email</th>
                                         <th>Verificado</th>
-                                
+                                        <th>Activo</th>
+                                        <th>Ver</th>
                                     </tr>
                                 </thead>
                                 
                                 <tbody>
-                                   {{-- @foreach ($dataCliente as $item)
+                                   @foreach ($dataDelivery as $item)
                                    <tr>
-                                   <td>{{$item->nombre}}</td>
+                                   <td>{{$item->name}}</td>
                                     <td>{{$item->apellido}}</td>
                                    <td>{{$item->telefono}}</td>
-                                   <td>{{$item->Email}}</td>
-                                   <td>{{$item->Verificado}}</td>
+                                   <td>{{$item->email}}</td>
+                                   <td>
+                                    @if($item->verificado == 1)
+                                         <div class="badge badge-success">Si</div>
+                                    @else
+                                         <div class="badge badge-warning">No</div>
+                                    @endif
+                                 </td>
+                                 <td>
+                                    @if($item->bloqueado == 0)
+                                         <div class="badge badge-success">Si</div>
+                                    @else
+                                         <div class="badge badge-warning">No</div>
+                                    @endif
+                                 </td>
+                                 <td>
+                                    <a href="{{route('editarViewCliente', $item->id)}}" class="btn btn-sm btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Ver</a>
+                                    <a href="{{route('editarViewCliente', $item->id)}}" class="btn btn-sm btn-danger waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Borrar</a>
+                                </td>
                                 </tr>
-                                   @endforeach    --}}
+                                   @endforeach   
                              </tbody>
 
                                 <tfoot>
@@ -51,7 +69,8 @@
                                         <th>telefono</th>
                                         <th>Email</th>
                                         <th>Verificado</th>
-                                        
+                                        <th>Activo</th>
+                                        <th>Ver</th>
                                     </tr>
                                 </tfoot>
                             </table>
