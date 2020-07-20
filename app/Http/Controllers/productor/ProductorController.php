@@ -78,7 +78,12 @@ class ProductorController extends Controller
      */
     public function detalleProductor($id)
     {
-        return view('admin.productor.detalleProductor');
+        $Productor = Productore::join('users','users.id','=','productores.user_id')
+        ->join('productores','')
+        ->select('users.*')->get();
+
+
+        return view('admin.productor.detalleProductor', compact('Productor'));
     }
 
     /**

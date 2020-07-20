@@ -117,5 +117,5 @@ Route::get('crear/Pedidos', 'Pedido\PedidoController@crearViewPedido')->name('cr
 Route::post('crear/Pedidos', 'Pedido\PedidoController@crearPedido')->name('crearPedido');
 Route::get('/ver/Pedidos/{id}', 'Pedido\PedidoController@detallePedido')->name('detallePedido');
 
-
+    
 

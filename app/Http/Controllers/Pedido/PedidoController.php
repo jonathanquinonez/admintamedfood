@@ -23,14 +23,15 @@ class PedidoController extends Controller
         $dataPedidos = Pedido::join('clientes','clientes.id','=','pedidos.cliente_id')
         ->join('users','users.id','=','clientes.user_id')
         ->join('estados','estados.id','=','pedidos.estado_id')
+        ->leftJoin('direcciones','direcciones.id','=','users.id')
         ->select('pedidos.created_at as fecha_pedido',
         'pedidos.id',
         'pedidos.total',
         'users.name',
         'users.apellido',
         'users.telefono',
-        'clientes.rut',
-        'clientes.direccion',
+        'users.identificacion',
+        'direcciones.direccion',
         'clientes.img_perfil',
         'estados.nombre as nombre_estado'
         )
@@ -106,12 +107,12 @@ class PedidoController extends Controller
                 'users.name',
                 'users.apellido',
                 'users.telefono',
-                'clientes.rut',
+                'users.identificacion',
                 'direcciones.direccion'
             )
             ->where('pedidos.id', '=', $id)
             ->get();
-
+                        
         $lista_pedido = DB::table('articulos_pedidos')
             ->join('productos','productos.id','=','articulos_pedidos.producto_id')
             ->select(
