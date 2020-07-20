@@ -19,18 +19,33 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $dataCliente = null;
+        $buscador = $request->buscador;
 
-        $dataCliente = Cliente::join('users','users.id','=','clientes.user_id')
-        ->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
-        ->select('users.*',
-        'clientes.direccion',
-        'clientes.rut',
-        'clientes.img_perfil',
-        'clientes.suscripcion_id'
-        )
-        ->paginate(1);
+        if ($buscador) {
+            $dataCliente = Cliente::join('users','users.id','=','clientes.user_id')
+                ->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
+                ->whereRaw("(users.name LIKE '%{$buscador}%' OR users.apellido LIKE '%{$buscador}%')")
+                ->select('users.*',
+                    'clientes.direccion',
+                    'clientes.rut',
+                    'clientes.img_perfil',
+                    'clientes.suscripcion_id'
+                )
+                ->paginate(10);
+        } else {
+            $dataCliente = Cliente::join('users','users.id','=','clientes.user_id')
+                ->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
+                ->select('users.*',
+                    'clientes.direccion',
+                    'clientes.rut',
+                    'clientes.img_perfil',
+                    'clientes.suscripcion_id'
+                )
+                ->paginate(10);
+        }
 
         return view('admin.cliente.verClientes', compact('dataCliente'));
     }
