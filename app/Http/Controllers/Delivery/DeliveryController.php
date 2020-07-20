@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Delivery;
 
+use App\Cliente;
+use App\Delivery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class DeliveryController extends Controller
@@ -14,8 +17,18 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        return view('admin.Delivery.verDelivery');
+        $dataDelivery = DB::table('delivery')
+        ->join('users','users.id','=','delivery.user_id')
+        ->select('users.*'
+        // 'suscripciones.nombre as nombre_suscripcion',
+        // 'suscripciones.detalle as detalle_suscripcion'
+        )
+        ->paginate(2);
 
+
+        //  $data = Cliente::all();
+        //return response()->json(compact('dataCliente'),201);
+        return view('admin.Delivery.verDelivery', compact('dataDelivery'));
     }
 
     /**
@@ -47,7 +60,15 @@ class DeliveryController extends Controller
      */
     public function show($id)
     {
-        //
+        $dataDelivery = Delivery::select(
+            'users.*')
+            ->join('users', 'users.id', '=', 'delivery.user_id')
+            ->where('users.id', '=', $id)
+            ->get();
+        $dataPedidos = Pedido::select()
+            ->join('delivery', 'delivery.id', '=', 'pedidos.delivery_id')
+            ->get();
+            return view('admin.Delivery.editarDelivery', compact('dataDelivery'));
     }
 
     /**

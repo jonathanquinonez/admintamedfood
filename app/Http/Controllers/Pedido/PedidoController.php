@@ -20,8 +20,7 @@ class PedidoController extends Controller
      */
     public function verPedido()
     {
-        $dataPedidos = DB::table('pedidos')
-        ->join('clientes','clientes.id','=','pedidos.cliente_id')
+        $dataPedidos = Pedido::join('clientes','clientes.id','=','pedidos.cliente_id')
         ->join('users','users.id','=','clientes.user_id')
         ->join('estados','estados.id','=','pedidos.estado_id')
         ->select('pedidos.created_at as fecha_pedido',
