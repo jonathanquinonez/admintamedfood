@@ -44,7 +44,8 @@ class Producto extends Model
 		'productor_id',
 		'medida',
 		'stock',
-		'nombre'
+		'nombre',
+        'precio'
 	];
 
 	public function articulos_pedidos()
