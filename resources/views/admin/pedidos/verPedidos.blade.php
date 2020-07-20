@@ -17,7 +17,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Pedidos</h4>
-                    <a type="button" href="{{route('crearPedido')}}" class="btn btn-success mr-1 mb-1" ><i class="feather icon-check-square"></i> Nuevo</a>          
+                    <a type="button" href="{{route('crearViewPedido')}}" class="btn btn-success mr-1 mb-1" ><i class="feather icon-check-square"></i> Nuevo</a>
       
                 </div>
                 <div class="card-content">
@@ -43,26 +43,28 @@
                                 
                                 <tbody>
                                   @foreach ($dataPedidos as $item)
-                                  <td>{{$item->name}}</td>
-                                  <td>{{$item->apellido}}</td>
-                                  <td>{{$item->telefono}}</td>
-                                  <td>{{$item->rut}}</td>
-                                  <td>{{$item->direccion}}</td>
-                                   <td><img height="50" width="50" src="{{$item->img_perfil}}"></td>
-                                  <td>{{$item->total}}</td>
-                                  <td>{{$item->fecha_pedido}}</td>                                  
-                                  <td>
-                                      @if ($item->nombre_estado == 1)
-                                          <div class="badge badge-success">Activo</div>
-                                      @endif
+                                      <tr>
+                                          <td>{{$item->name}}</td>
+                                          <td>{{$item->apellido}}</td>
+                                          <td>{{$item->telefono}}</td>
+                                          <td>{{$item->rut}}</td>
+                                          <td>{{$item->direccion}}</td>
+                                           <td><img height="50" width="50" src="{{$item->img_perfil}}"></td>
+                                          <td>{{$item->total}}</td>
+                                          <td>{{$item->fecha_pedido}}</td>
+                                          <td>
+                                              @if ($item->nombre_estado == 1)
+                                                  <div class="badge badge-success">Activo</div>
+                                              @endif
 
-                                      @if ($item->nombre_estado != 1)
-                                      <div class="badge badge-danger">INACTIVO</div>
-                                      @endif
-                                      <td>
-                                        <a type="button" href="{{route('detallePedido',[$item->id])}}" class="btn btn-success mr-1 mb-1"><i class="feather icon-check-square"></i> Ver</button>          
-                                        </td>
-                                  </td>                                  
+                                              @if ($item->nombre_estado != 1)
+                                              <div class="badge badge-danger">INACTIVO</div>
+                                              @endif
+                                              <td>
+                                                <a type="button" href="{{route('detallePedido',[$item->id])}}" class="btn btn-success mr-1 mb-1"><i class="feather icon-check-square"></i> Ver</button>
+                                                </td>
+                                          </td>
+                                      </tr>
                                   @endforeach   
                              </tbody>
 

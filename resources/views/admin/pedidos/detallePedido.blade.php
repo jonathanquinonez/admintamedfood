@@ -8,6 +8,9 @@
 
 @section('contenido')
 
+
+
+
     <div class="content-wrapper">
         <div class="content-body">
             <section id="column-selectors">
@@ -15,76 +18,45 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Detalle del Pedido</h4>
+                                <h4 class="card-title">Pedido N° {{ $pedido[0]->id }}</h4>
                             </div>
-                            <form method="POST" action="#">
-                                {{ csrf_field() }}
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
-                                        <h5>Información del Productor</h5>
+                                        <h5>Información del Pedido</h5>
                                         <div class="row">
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Nombre</label>
-                                                    <input type="text" class="form-control {{ $errors->has('name') ? ' has-error' : '' }}" required="" value="{{ old('name') }}" name="name">
-                                                    @if ($errors->has('name'))
-                                                        <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('name') }}</strong>
-                                                    </span>
-                                                    @endif
+                                                    <input type="text" class="form-control" value="{{ $pedido[0]->name }}" disabled>
                                                 </fieldset>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Apellido</label>
-                                                    <input type="text" class="form-control {{ $errors->has('apellido_usuario') ? ' has-error' : '' }}" required="" value="{{ old('apellido_usuario') }}" name="apellido_usuario">
-                                                    @if ($errors->has('apellido_usuario'))
-                                                        <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('apellido_usuario') }}</strong>
-                                                    </span>
-                                                    @endif
+                                                    <input type="text" class="form-control" value="{{ $pedido[0]->apellido }}" disabled>
                                                 </fieldset>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Telefono</label>
-                                                    <input type="text" class="form-control {{ $errors->has('telefono_usuario') ? ' has-error' : '' }}" required="" value="{{ old('telefono_usuario') }}" name="telefono_usuario">
-                                                    @if ($errors->has('telefono_usuario'))
-                                                        <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('telefono_usuario') }}</strong>
-                                                    </span>
-                                                    @endif
+                                                    <input type="text" class="form-control" value="{{ $pedido[0]->telefono }}" disabled>
                                                 </fieldset>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <fieldset class="form-group">
                                                     <label>DNI</label>
-                                                    <input type="text" class="form-control {{ $errors->has('dni_usuario') ? ' has-error' : '' }}" required="" value="{{ old('dni_usuario') }}" name="dni_usuario">
-                                                    @if ($errors->has('dni_usuario'))
-                                                        <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('dni_usuario') }}</strong>
-                                                    </span>
-                                                    @endif
+                                                    <input type="text" class="form-control" value="{{ $pedido[0]->rut }}" disabled>
                                                 </fieldset>
                                             </div>
                                             <div class="col-8">
                                                 <fieldset class="form-group">
                                                     <label>Dirección</label>
-                                                    <input type="text" class="form-control {{ $errors->has('direccion_usuario') ? ' has-error' : '' }}" required="" value="{{ old('direccion_usuario') }}" name="direccion_usuario">
-                                                    @if ($errors->has('direccion_usuario'))
-                                                        <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('direccion_usuario') }}</strong>
-                                                    </span>
-                                                    @endif
+                                                    <input type="text" class="form-control" value="{{ $pedido[0]->direccion }}" disabled>
                                                 </fieldset>
-                                            </div>
-                                            <div class="col-12">
-                                                <button type="submit" class="btn btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Actualizar</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
 
                         </div>
                         <div class="card">
@@ -102,30 +74,35 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Nombre</th>
-                                                            <th>Stock</th>
-                                                            <th>Medida</th>
-                                                            <th>Categoria</th>
+                                                            <th>Cantidad</th>
+                                                            <th>Sub-total</th>
+                                                            <th>Total</th>
                                                         </tr>
                                                     </thead>
-                                                    
+
                                                     <tbody>
-                                                      
-                                                       <tr>
-                                                       
-                                                    </tr>
-                                                       
-                                                 </tbody>
-                    
+                                                    @foreach ($lista_pedido as $item)
+                                                        <tr>
+                                                            <td>{{$item->nombre}}</td>
+                                                            <td>{{$item->cantidad}} {{ $item->medida }}</td>
+                                                            <td>${{$item->precio / $item->cantidad}}</td>
+                                                            <td>${{$item->precio}}</td>
+
+
+                                                        </tr>
+                                                    @endforeach
+                                                    </tbody>
+
                                                     <tfoot>
                                                         <tr>
                                                             <th>Nombre</th>
-                                                            <th>Stock</th>
-                                                            <th>Medida</th>
-                                                            <th>Categoria</th>
-                                                            
+                                                            <th>Cantidad</th>
+                                                            <th>Sub-total</th>
+                                                            <th>Total</th>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
+                                                <h3 class="mx-1 font-weight-bold"><span class="text-success">Total: ${{ $total_pedido }}</span></h3>
                                             </div>
                                         </div>
                                     </div>

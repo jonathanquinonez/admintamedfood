@@ -112,7 +112,8 @@ Route::post('crear/CategoriaNutricion', 'Configuracion\ConfiguracionController@c
 |--------------------------------------------------------------------------
  */
 Route::get('/ver/Pedidos', 'Pedido\PedidoController@verPedido')->name('verPedidos');
-Route::get('crear/Pedidos', 'Pedido\PedidoController@crearPedido')->name('crearPedido');
+Route::get('crear/Pedidos', 'Pedido\PedidoController@crearViewPedido')->name('crearViewPedido');
+Route::post('crear/Pedidos', 'Pedido\PedidoController@crearPedido')->name('crearPedido');
 Route::get('/ver/Pedidos/{id}', 'Pedido\PedidoController@detallePedido')->name('detallePedido');
 
 
