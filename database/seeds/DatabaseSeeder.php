@@ -28,12 +28,45 @@ class DatabaseSeeder extends Seeder
     {
         DB::statement('SET FOREIGN_KEY_CHECKS =0');
         user::truncate();
+        Cliente::truncate();
+        Delivery::truncate();
+        // ArticulosPedido::truncate();
+        Direccione::truncate();
+        // Estado::truncate();
+        // MovimientosArticulosPedido::truncate();
+        // MovimientosPedido::truncate();
+        // MovimientosProducto::truncate();
+        // PasswordReset::truncate();
+        // Pedido::truncate();
+        // Productore::truncate();
+        TerminosCondicione::truncate();
+        Suscripcione::truncate();
+        
+
+        Direccione::flushEventListeners(); 
+        User::flushEventListeners(); 
+        TerminosCondicione::flushEventListeners();
+        Suscripcione::flushEventListeners();
+        Cliente::flushEventListeners();
+        Delivery::flushEventListeners();
+
+        $cantidadDireciones                = 100;
+        $cantidadUsuarios                  = 100;
+        $cantidadClientes                  = 100;
+        $cantidadDelivery                  = 100;
+        $cantidadSuscripcione              = 100;
+        $cantidadTerminosySuscripciones    = 100;
 
 
-        User::flushEventListeners(); //desactiva todops los evetos de un modelos para que no mande mucho contenido
 
-        $cantidadUsuarios =1000;
+        factory(user::class, $cantidadUsuarios)                ->create();
+        factory(Cliente::class, $cantidadClientes)             ->create();
+        factory(Delivery::class, $cantidadDelivery)            ->create();
+        factory(user::class, $cantidadSuscripcione)            ->create();
+        factory(user::class, $cantidadDireciones)              ->create();
+        factory(user::class, $cantidadTerminosySuscripciones)  ->create();
 
-        factory(user::class, $cantidadUsuarios)->create();
+
+
     }
 }
