@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Cliente;
 
+use App\Pedido;
 use http\Client;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
@@ -129,7 +130,17 @@ class ClienteController extends Controller
             ->where('users.id', '=', $id)
             ->get();
 
-        return view('admin.cliente.editCliente', compact('data_user'));
+        $lista_pedidos = Pedido::where('cliente_id', '=', $id)
+            ->leftjoin('estados', 'estados.id', '=', 'pedidos.estado_id')
+            ->select(
+                'pedidos.id',
+                'pedidos.total',
+                'pedidos.created_at',
+                'estados.nombre'
+            )
+            ->get();
+
+        return view('admin.cliente.editCliente', compact(['data_user', 'lista_pedidos']));
     }
 
     public function edit($id, Request $request)
