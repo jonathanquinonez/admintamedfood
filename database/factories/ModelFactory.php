@@ -22,7 +22,7 @@ $factory->define(App\user::class, function (Faker\Generator $faker) {
         'name'               => $faker                 ->firstName,
         'apellido'           => $faker                 ->lastName,
         'email'              => $faker                 ->unique()->safeEmail,
-        'password'           => $password ?: $password = bcrypt('secret'),
+        'password'           => $password ?: $password = bcrypt('123456'),
         'admin'              => $faker                 ->randomElement([user::USUARIO_ADMINISTRADOR, user::USUARIO_REGULAR]),
         'verificado'          => $faker                 ->randomElement([user::USUARIO_VERIFICADO, user::USUARIO_NO_VERIFICADO]),
         'bloqueado'          => $faker                 ->randomElement([user::USUARIO_NO_BLOQUEADO, user::USUARIO_BLOQUEADO]),
