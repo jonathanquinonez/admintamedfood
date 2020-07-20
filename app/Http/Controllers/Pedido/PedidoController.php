@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Pedido;
 
-use Illuminate\Http\Request;
+use App\ArticulosPedido;
+use App\Cliente;
 use App\Pedido;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -66,43 +68,19 @@ class PedidoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function crearViewPedido(Request $request){
+        $lista_clientes = Cliente::join('users','users.id','=','clientes.user_id')
+            ->select(
+                'clientes.id',
+                'users.name',
+                'users.apellido'
+            )
+            ->get();
+
+        return view('admin.pedidos.crearPedido', compact(['lista_clientes']));
+    }
+
     public function crearPedido(Request $request){
-        // $validator = Validator::make($request->all(),[
-        //     'name' => 'required|string|max:50',
-        //     'apellido' => 'required|string|max:50',
-        //     'rut'    => 'required|string|max:50',
-        //      'direccion'=>'required|string|max:50',
-        //      'total'  => 'required|string|max:50'
-        // ]);
-
-        // if($validator->fails()){
-        //     return redirect()->back()
-        //     ->withInput($request->only('name','rut','direccion','total'))
-        //     ->withErrors($validator->errors());
-        // }
-
-        // DB::table('pedidos')->insert([
-        // [
-           
-        //     //'cliente_id' => 1,
-        //     //'estado_id'  => 1,
-        //     'total'      =>$request->total
-
-        // ],
-        // ]);
-        // DB::table('users')->insert([
-        //    [ 'name' => $request->name,
-        //      'apellido'=> $request->apellido],
-        // ]);
-
-        // DB::table('clientes')->insert([
-        //     ['rut'    => $request->rut,
-        //     'img_perfil' => 'https://picsum.photos/200/300',
-        //     'direccion'  => $request->direccion
-        // ],
-        // ]);
-       
-        // return redirect()->back();
         return view('admin.pedidos.crearPedido');
     }
 
@@ -120,7 +98,37 @@ class PedidoController extends Controller
 
     public function detallePedido($id)
     {
-        return view('admin.pedidos.detallePedido'); 
+        $pedido = Pedido::join('clientes','clientes.id','=','pedidos.cliente_id')
+            ->leftJoin('users','users.id','=','clientes.user_id')
+            ->leftJoin('direcciones','direcciones.id','=','users.id')
+            ->select(
+                'pedidos.id',
+                'users.name',
+                'users.apellido',
+                'users.telefono',
+                'clientes.rut',
+                'direcciones.direccion'
+            )
+            ->where('pedidos.id', '=', $id)
+            ->get();
+
+        $lista_pedido = DB::table('articulos_pedidos')
+            ->join('productos','productos.id','=','articulos_pedidos.producto_id')
+            ->select(
+                'articulos_pedidos.cantidad',
+                'articulos_pedidos.precio',
+                'productos.nombre',
+                'productos.medida'
+            )
+            ->where('pedido_id', '=', $id)
+            ->get();
+
+        $total_pedido = 0;
+        foreach ($lista_pedido as $item) {
+            $total_pedido += $item->precio;
+        }
+
+        return view('admin.pedidos.detallePedido', compact(['pedido', 'lista_pedido', 'total_pedido']));
     }
 
     /**

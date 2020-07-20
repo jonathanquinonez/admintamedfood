@@ -21,23 +21,17 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $dataCliente = DB::table('clientes')
-        ->join('users','users.id','=','clientes.user_id')
-        //->join('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
+
+        $dataCliente = Cliente::join('users','users.id','=','clientes.user_id')
         ->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
         ->select('users.*',
         'clientes.direccion',
         'clientes.rut',
         'clientes.img_perfil',
-        'clientes.suscripcion_id' 
-        // 'suscripciones.nombre as nombre_suscripcion',
-        // 'suscripciones.detalle as detalle_suscripcion'
+        'clientes.suscripcion_id'
         )
-        ->paginate(4);
+        ->paginate(1);
 
-
-        //  $data = Cliente::all();
-        //return response()->json(compact('dataCliente'),201);
         return view('admin.cliente.verClientes', compact('dataCliente'));
     }
 
@@ -55,7 +49,7 @@ class ClienteController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|max:128',
+            'password' => 'required|string|max:128|confirmed',
            // 'img_perfil' => 'mimes:jpeg,jpg,png,gif|max:10000',
             'name' => 'required|string|max:50',
             'apellido' => 'required|string|max:55',
