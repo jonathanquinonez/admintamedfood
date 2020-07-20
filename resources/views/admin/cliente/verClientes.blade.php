@@ -55,7 +55,7 @@
                                    <tr>
                                         <td>{{$item->name}} {{$item->apellido}}</td>
                                         <td>{{$item->telefono}}</td>
-                                        <td>{{$item->rut}}</td>
+                                        <td>{{$item->identificacion}}</td>
                                         <td><img height="50" width="50" src="{{$item->img_perfil}}"></td>
                                         <td>
                                             @if($item->verificado)
