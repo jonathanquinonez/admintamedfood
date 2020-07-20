@@ -78,7 +78,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="page-user-profile.html"><i class="feather icon-user"></i> Edit Profile</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0);" {{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <a class="dropdown-item" href="javascript:void(0); {{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="feather icon-power"></i> Logout
                                 </a>
                                 <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none;">
@@ -126,6 +126,11 @@
                 <li class=" nav-item"><a href="{{route('verProductor')}}">
                     <i class="feather  icon-box"></i>
                     <span class="menu-title" data-i18n="Email">Productores</span></a>
+                </li>
+
+                <li class=" nav-item"><a href="{{route('verProductos')}}">
+                        <i class="feather  icon-box"></i>
+                        <span class="menu-title" data-i18n="Email">Productos</span></a>
                 </li>
                
             <li class=" nav-item"><a href="{{route('verDelivery')}}">
