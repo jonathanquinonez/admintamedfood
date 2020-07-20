@@ -85,6 +85,7 @@ class DeliveryController extends Controller
             'estados.nombre as nombre_estado'
             )
             ->get();
+            //dd($dataDelivery);
             return view('admin.Delivery.editarDelivery', compact('dataDelivery', 'dataPedidos'));
     }
 
