@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Delivery;
 
+use App\Pedido;
 use App\Cliente;
 use App\Delivery;
 use Illuminate\Http\Request;
@@ -19,11 +20,11 @@ class DeliveryController extends Controller
     {
         $dataDelivery = DB::table('delivery')
         ->join('users','users.id','=','delivery.user_id')
-        ->select('users.*'
+        ->select('users.*', 'delivery.id as user_id'
         // 'suscripciones.nombre as nombre_suscripcion',
         // 'suscripciones.detalle as detalle_suscripcion'
         )
-        ->paginate(2);
+        ->paginate(3);
 
 
         //  $data = Cliente::all();
@@ -60,15 +61,31 @@ class DeliveryController extends Controller
      */
     public function show($id)
     {
+
         $dataDelivery = Delivery::select(
-            'users.*')
+            'users.*', 'direcciones.direccion as direccion_user', 'direcciones.detalle as detalle_direccion')
             ->join('users', 'users.id', '=', 'delivery.user_id')
+            ->Leftjoin('direcciones','direcciones.user_id','=','users.id')
             ->where('users.id', '=', $id)
+            ->first();
+        $dataPedidos = Pedido::join('clientes','clientes.id','=','pedidos.cliente_id')
+            ->join('users','users.id','=','clientes.user_id')
+            ->join('estados','estados.id','=','pedidos.estado_id')
+            ->leftJoin('direcciones','direcciones.id','=','users.id')
+            ->where('pedidos.delivery_id', '=', $id)
+            ->select('pedidos.created_at as fecha_pedido',
+            'direcciones.direccion',
+            'direcciones.detalle as detalle_direccion',
+            'pedidos.id',
+            'pedidos.total',
+            'users.name',
+            'users.apellido',
+            'users.telefono',
+            'clientes.img_perfil',
+            'estados.nombre as nombre_estado'
+            )
             ->get();
-        $dataPedidos = Pedido::select()
-            ->join('delivery', 'delivery.id', '=', 'pedidos.delivery_id')
-            ->get();
-            return view('admin.Delivery.editarDelivery', compact('dataDelivery'));
+            return view('admin.Delivery.editarDelivery', compact('dataDelivery', 'dataPedidos'));
     }
 
     /**

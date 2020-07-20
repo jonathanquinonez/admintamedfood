@@ -55,8 +55,8 @@
                                     @endif
                                  </td>
                                  <td>
-                                    <a href="{{route('editarViewCliente', $item->id)}}" class="btn btn-sm btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Ver</a>
-                                    <a href="{{route('editarViewCliente', $item->id)}}" class="btn btn-sm btn-danger waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Borrar</a>
+                                    <a href="{{route('detalleDelivery', $item->user_id)}}" class="btn btn-sm btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Ver</a>
+                                    <a href="#" class="btn btn-sm btn-danger waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Borrar</a>
                                 </td>
                                 </tr>
                                    @endforeach   
