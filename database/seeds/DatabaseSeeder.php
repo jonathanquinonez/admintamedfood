@@ -43,8 +43,8 @@ class DatabaseSeeder extends Seeder
         Suscripcione::truncate();
         
 
-        Direccione::flushEventListeners(); 
         User::flushEventListeners(); 
+        Direccione::flushEventListeners(); 
         TerminosCondicione::flushEventListeners();
         Suscripcione::flushEventListeners();
         Cliente::flushEventListeners();
@@ -59,12 +59,12 @@ class DatabaseSeeder extends Seeder
 
 
 
-        factory(user::class, $cantidadUsuarios)                ->create();
-        factory(Cliente::class, $cantidadClientes)             ->create();
-        factory(Delivery::class, $cantidadDelivery)            ->create();
-        factory(user::class, $cantidadSuscripcione)            ->create();
-        factory(user::class, $cantidadDireciones)              ->create();
-        factory(user::class, $cantidadTerminosySuscripciones)  ->create();
+        factory(user::class, $cantidadUsuarios)                             ->create();
+        factory(Direccione::class, $cantidadDireciones)                     ->create();
+        factory(Cliente::class, $cantidadClientes)                          ->create();
+        factory(Delivery::class, $cantidadDelivery)                         ->create();
+        factory(Suscripcione::class, $cantidadSuscripcione)                 ->create();
+        factory(TerminosCondicione::class, $cantidadTerminosySuscripciones) ->create();
 
 
 

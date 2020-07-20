@@ -28,21 +28,6 @@ use App\user;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-$factory->define(App\Direccione::class, function (Faker\Generator $faker) {
-   
-
-    return [
-        'latitud'            => $faker                ->latitude(-90,90),
-        'longitud'           => $faker                ->longitude(-90,90),
-        'direccion'          => $faker                ->address,
-        'detalle'            => $faker                ->word,
-        'tipo_direccion'     => $faker                ->address,
-        'user_id'            => user::all()->id,
-        
-    ];
-});
-
-
 $factory->define(App\user::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -58,6 +43,23 @@ $factory->define(App\user::class, function (Faker\Generator $faker) {
         'notificaciones'     => $faker                 ->randomElement([user::si,user::no]),
     ];
 });
+
+$factory->define(App\Direccione::class, function (Faker\Generator $faker) {
+   
+
+    return [
+        'latitud'            => $faker                ->latitude(-90,90),
+        'longitud'           => $faker                ->longitude(-90,90),
+        'direccion'          => $faker                ->address,
+        'detalle'            => $faker                ->word,
+        'tipo_direccion'     => $faker                ->address,
+        'user_id'            => function() {
+            return factory(User::class)->create()->id;
+        }
+        
+    ];
+});
+
 
 $factory->define(App\TerminosCondicione::class, function (Faker\Generator $faker) {
 
@@ -75,7 +77,9 @@ $factory->define(App\Suscripcione::class, function (Faker\Generator $faker) {
         'detalle'                 => $faker ->paragraph(1),
         'porcentaje'              => $faker ->numberBetween(1,20),
         'img'                     => $faker ->image,
-        'terminos_condiciones'    => TerminosCondicione::all()->id,
+        'terminos_condiciones'    => function() {
+            return factory(TerminosCondicione::class)->create()->id;
+        }
     ];
 });
 
@@ -83,14 +87,20 @@ $factory->define(App\Cliente::class, function (Faker\Generator $faker) {
 
     return [
         'img_perfil'        => $faker                ->image,
-        'user_id'           => user::all() ->id,
-        'suscripcion_id'    => Suscripcione::all()   ->id,
+        'user_id'           => function() {
+            return factory(User::class)->create()->id;
+        },
+        'suscripcion_id'    => function() {
+            return factory(Suscripcione::class)->create()->id;
+        }
     ];
 });
 
 $factory->define(App\Delivery::class, function (Faker\Generator $faker) {
 
     return [
-        'user_id'            =>user::all()->id,
+        'user_id'            =>function() {
+            return factory(User::class)->create()->id;
+        }
     ];
 });
