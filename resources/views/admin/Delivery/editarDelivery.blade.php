@@ -22,7 +22,7 @@
                             <div class="card-header">
                                 <h4 class="card-title">Detalle del Delivery</h4>
                             </div>
-                            <form method="POST" action="#">
+                            <form method="POST" action="#" name="f1" id="f1">
                                 {{ csrf_field() }}
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
@@ -75,7 +75,7 @@
                                             <div class="col-4">
                                                 <fieldset class="form-group">
                                                     <label>Dirección</label>
-                                                    <input type="text" class="form-control {{ $errors->has('direccion_user') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->direccion_user }}" name="direccion_user">
+                                                    <input type="text" class="form-control {{ $errors->has('direccion_user') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->direccion_user }}" name="direccion_user" id="direccion_user">
                                                     @if ($errors->has('direccion_user'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('direccion_user') }}</strong>
@@ -83,10 +83,10 @@
                                                     @endif
                                                 </fieldset>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <fieldset class="form-group">
-                                                    <label>Dirección</label>
-                                                    <input type="text" class="form-control {{ $errors->has('detalle_direccion') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->detalle_direccion }}" name="detalle_direccion">
+                                                    <label>Detalle Dirección</label>
+                                                    <input type="text" class="form-control {{ $errors->has('detalle_direccion') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->detalle_direccion }}" name="detalle_direccion" >
                                                     @if ($errors->has('detalle_direccion'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('detalle_direccion') }}</strong>
@@ -94,18 +94,36 @@
                                                     @endif
                                                 </fieldset>
                                             </div>
-                                            <div class="col-1">
-                                               <i class="ficon feather icon-search"></i>
+                                            <div class="col-4">
+                                                <fieldset class="form-group">
+                                                    <label>Latitud</label>
+                                                    <input type="text" class="form-control {{ $errors->has('latitud') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->latitud }}" name="latitud" id="latitud">
+                                                    @if ($errors->has('latitud'))
+                                                        <span class="help-block badge bg-danger">
+                                                        <strong>{{ $errors->first('latitud') }}</strong>
+                                                    </span>
+                                                    @endif
+                                                </fieldset>
                                             </div>
-                                            <div class="col-12" style="height: 200px">
-
+                                            <div class="col-4">
+                                                <fieldset class="form-group">
+                                                    <label>Longitud</label>
+                                                    <input type="text" class="form-control {{ $errors->has('longitud') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->longitud }}" name="longitud" id="longitud">
+                                                    @if ($errors->has('longitud'))
+                                                        <span class="help-block badge bg-danger">
+                                                        <strong>{{ $errors->first('longitud') }}</strong>
+                                                    </span>
+                                                    @endif
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-12" >
                                             <div>
                                                 <div id="pac-container">
-                                                <input id="pac-input" type="text"
-                                                    placeholder="Enter a location">
+                                                <input id="pac-input" type="text" class="form-control"
+                                                    placeholder="Buscar dsirección">
                                                 </div>
                                             </div>
-                                            <div id="map"></div>
+                                            <div id="map" style="height: 200px"></div>
                                             <div id="infowindow-content">
                                                 <img src="" width="16" height="16" id="place-icon">
                                                 <span id="place-name"  class="title"></span><br>
@@ -259,6 +277,7 @@
           map.setZoom(17);  // Why 17? Because it looks good.
         }
         marker.setPosition(place.geometry.location);
+  
         marker.setVisible(true);
 
         var address = '';
@@ -269,11 +288,17 @@
             (place.address_components[2] && place.address_components[2].short_name || '')
           ].join(' ');
         }
-
+        //document.f1.detalle_direccion.value = '';
         infowindowContent.children['place-icon'].src = place.icon;
         infowindowContent.children['place-name'].textContent = place.name;
         infowindowContent.children['place-address'].textContent = address;
         infowindow.open(map, marker);
+        document.f1.direccion_user.value = address;
+        document.f1.latitud.value = place.lat;
+        document.f1.longitud.value = place.lng;
+        console.log("direccion",document.f1.direccion_user.value);
+        console.log("lng",map.location.lng);
+        console.log("lat",place.geometry.location.lat);
       });
 
       // Sets a listener on a radio button to change the filter type on Places
