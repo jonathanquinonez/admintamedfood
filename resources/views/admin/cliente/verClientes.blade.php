@@ -17,7 +17,19 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Clientes</h4>
-                    <div>
+                    <div class="d-flex flex-row">
+                        <form method="GET" action="{{ route('verClientes') }}">
+                            <fieldset class="mr-1">
+                                <div class="input-group">
+                                    <input name="buscador" {{ old("buscador") }} type="text" class="form-control" placeholder="Nombre, Rut" aria-describedby="button-addon2">
+                                    <div class="input-group-append" id="button-addon2">
+                                        <button class="btn btn-primary waves-effect waves-light" type="submit">
+                                            <i class="feather icon-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
                         <a href="{{route('crearViewCliente')}}" class="btn btn-success waves-effect waves-light"><i class="feather icon-check-square"></i>&nbsp; Nuevo</a>
                     </div>
                 </div>
@@ -28,8 +40,7 @@
                             <table class="table table-striped dataex-html5-selectors">
                                 <thead>
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
+                                        <th>Nombre completo</th>
                                         <th>Teléfono</th>
                                         <th>Rut</th>
                                         <th>Imagen</th>
@@ -42,10 +53,9 @@
                                 <tbody>
                                    @foreach ($dataCliente as $item)
                                    <tr>
-                                        <td>{{$item->name}}</td>
-                                        <td>{{$item->apellido}}</td>
+                                        <td>{{$item->name}} {{$item->apellido}}</td>
                                         <td>{{$item->telefono}}</td>
-                                        <td>{{$item->rut}}</td>
+                                        <td>{{$item->identificacion}}</td>
                                         <td><img height="50" width="50" src="{{$item->img_perfil}}"></td>
                                         <td>
                                             @if($item->verificado)
@@ -71,8 +81,7 @@
 
                                 <tfoot>
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
+                                        <th>Nombre completo</th>
                                         <th>Teléfono</th>
                                         <th>Rut</th>
                                         <th>Imagen</th>

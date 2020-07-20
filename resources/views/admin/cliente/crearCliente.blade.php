@@ -97,10 +97,10 @@
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <fieldset class="form-group">
                                                     <label>DNI</label>
-                                                    <input type="text" class="form-control {{ $errors->has('rut') ? ' has-error' : '' }}" required="" value="{{ old('rut') }}" name="rut">
+                                                    <input type="text" class="form-control {{ $errors->has('identificacion') ? ' has-error' : '' }}" required="" value="{{ old('identificacion') }}" name="identificacion">
                                                     @if ($errors->has('rut'))
                                                         <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('rut') }}</strong>
+                                                        <strong>{{ $errors->first('identificacion') }}</strong>
                                                     </span>
                                                     @endif
                                                 </fieldset>

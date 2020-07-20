@@ -19,18 +19,31 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $dataCliente = null;
+        $buscador = $request->buscador;
 
-        $dataCliente = Cliente::join('users','users.id','=','clientes.user_id')
-        ->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
-        ->select('users.*',
-        'clientes.direccion',
-        'clientes.rut',
-        'clientes.img_perfil',
-        'clientes.suscripcion_id'
-        )
-        ->paginate(1);
+        if ($buscador) {
+            $dataCliente = Cliente::join('users','users.id','=','clientes.user_id')
+                ->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
+                ->whereRaw("(users.name LIKE '%{$buscador}%' OR users.apellido LIKE '%{$buscador}%')")
+                ->select('users.*',
+                    'clientes.direccion',
+                    'clientes.img_perfil',
+                    'clientes.suscripcion_id'
+                )
+                ->paginate(10);
+        } else {
+            $dataCliente = Cliente::join('users','users.id','=','clientes.user_id')
+                ->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
+                ->select('users.*',
+                    'clientes.direccion',
+                    'clientes.img_perfil',
+                    'clientes.suscripcion_id'
+                )
+                ->paginate(10);
+        }
 
         return view('admin.cliente.verClientes', compact('dataCliente'));
     }
@@ -54,7 +67,7 @@ class ClienteController extends Controller
             'name' => 'required|string|max:50',
             'apellido' => 'required|string|max:55',
             'telefono' => 'required|string|max:20',
-            'rut' => 'required|string|max:100',
+            'identificacion' => 'required|string|max:100',
             'direccion' => 'required|string|max:500',
         ]);
 
@@ -62,13 +75,14 @@ class ClienteController extends Controller
         {
             return redirect()->back()
                 ->withInput($request->only(
-                    'email', 'password', 'img_perfil', 'name', 'apellido', 'telefono', 'rut', 'direccion'))
+                    'email', 'password', 'img_perfil', 'name', 'apellido', 'telefono', 'identificacion', 'direccion'))
                 ->withErrors($validator->errors());
         }
 
         $password_encrypt = bcrypt($request->password);
         $usuario = User::create([
             'name' => $request->name,
+            'identificacion' => $request->identificacion,
             'email' => $request->email,
             'password' => $password_encrypt,
             'telefono' => $request->telefono,
@@ -80,7 +94,6 @@ class ClienteController extends Controller
         if ($usuario->save()) {
 
             $cliente = Cliente::create([
-                'rut' => $request->rut,
                 'img_perfil' => 'https://www.lavanguardia.com/r/GODO/LV/p5/WebSite/2018/07/25/Recortada/img_msanoja_20160801-194152_imagenes_lv_getty_istock_77607221_small-k0hH--656x437@LaVanguardia-Web.jpg',
                 'user_id' => $usuario->id
             ]);
@@ -108,7 +121,7 @@ class ClienteController extends Controller
             'users.name',
             'users.apellido',
             'users.telefono',
-            'clientes.rut',
+            'users.identificacion',
             'clientes.img_perfil',
             'direcciones.direccion')
             ->leftjoin('clientes', 'users.id', '=', 'clientes.user_id')
@@ -128,7 +141,7 @@ class ClienteController extends Controller
             'name' => 'required|string|max:50',
             'apellido' => 'required|string|max:55',
             'telefono' => 'required|string|max:20',
-            'rut' => 'required|string|max:100',
+            'identificacion' => 'required|string|max:100',
             //'direccion' => 'string|max:500',
         ]);
 
@@ -136,7 +149,7 @@ class ClienteController extends Controller
         {
             return redirect()->back()
                 ->withInput($request->only(
-                    'password', 'img_perfil', 'name', 'apellido', 'telefono', 'rut', 'direccion'))
+                    'password', 'img_perfil', 'name', 'apellido', 'telefono', 'identificacion', 'direccion'))
                 ->withErrors($validator->errors());
         }
 
@@ -152,9 +165,9 @@ class ClienteController extends Controller
             $usuario->name = $request->name;
             $usuario->apellido = $request->apellido;
             $usuario->telefono = $request->telefono;
+            $usuario->identificacion = $request->identificacion;
             $usuario->update();
 
-            $cliente->rut = $request->rut;
             $cliente->img_perfil = $request->img_perfil;
             $cliente->update();
 
