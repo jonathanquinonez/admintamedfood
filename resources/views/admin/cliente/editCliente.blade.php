@@ -115,6 +115,60 @@
                             </form>
 
                         </div>
+                        <div class="card">
+
+                            <div class="card-header">
+                                <h4 class="card-title">Historico pedidos</h4>
+                            </div>
+
+
+                            <div class="card-content">
+                                <div class="card-body card-dashboard">
+                                    {{-- <h5>Información del Productor</h5> --}}
+                                    <div class="row">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped dataex-html5-selectors">
+                                                <thead>
+                                                <tr>
+                                                    <th>N° Pedido</th>
+                                                    <th>Estado</th>
+                                                    <th>Total</th>
+                                                    <th>Fecha</th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    @foreach($lista_pedidos as $item)
+                                                        <tr>
+                                                            <td>{{ $item->id }}</td>
+                                                            <td>{{ $item->nombre }}</td>
+                                                            <td>{{ $item->total }}</td>
+                                                            <td>{{ $item->created_at }}</td>
+                                                            <td>
+                                                                <a href="{{route('detallePedido', $item->id)}}" class="btn btn-sm btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Ver</a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+
+                                                <tfoot>
+                                                <tr>
+                                                    <th>N° Pedido</th>
+                                                    <th>Estado</th>
+                                                    <th>Total</th>
+                                                    <th>Fecha</th>
+                                                    <th></th>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
             </section>

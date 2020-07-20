@@ -19,8 +19,8 @@ class User extends Authenticatable
 	const si =  '1';
     const no ='0';
 
-    const USUARIO_ADMINISTRADOR = 'true';
-    const USUARIO_REGULAR = 'false';
+    const USUARIO_ADMINISTRADOR = 'admin';
+    const USUARIO_REGULAR = 'admin';
     
 	protected $table = 'users';
 
