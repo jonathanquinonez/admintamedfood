@@ -117,5 +117,13 @@ Route::get('crear/Pedidos', 'Pedido\PedidoController@crearViewPedido')->name('cr
 Route::post('crear/Pedidos', 'Pedido\PedidoController@crearPedido')->name('crearPedido');
 Route::get('/ver/Pedidos/{id}', 'Pedido\PedidoController@detallePedido')->name('detallePedido');
 
-    
+/*
+|--------------------------------------------------------------------------
+| Productos
+|--------------------------------------------------------------------------
+ */
+Route::get('/ver/productos', 'Producto\ProductoController@index')->name('verProductos');
+Route::get('/ver/productos/{id}', 'Producto\ProductoController@verDetalleProducto')->name('verDetalleProducto');
+Route::get('/crear/productos', 'Producto\ProductoController@crearViewProducto')->name('crearViewProducto');
+Route::post('/crear/productos', 'Producto\ProductoController@crearProducto')->name('crearProducto');
 
