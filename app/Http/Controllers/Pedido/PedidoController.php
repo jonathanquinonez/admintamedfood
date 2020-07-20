@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pedido;
 
 use Illuminate\Http\Request;
+use App\Pedido;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -17,8 +18,7 @@ class PedidoController extends Controller
      */
     public function verPedido()
     {
-        $dataPedidos = DB::table('pedidos')
-        ->join('clientes','clientes.id','=','pedidos.cliente_id')
+        $dataPedidos = Pedido::join('clientes','clientes.id','=','pedidos.cliente_id')
         ->join('users','users.id','=','clientes.user_id')
         ->join('estados','estados.id','=','pedidos.estado_id')
         ->select('pedidos.created_at as fecha_pedido',
@@ -120,7 +120,7 @@ class PedidoController extends Controller
 
     public function detallePedido($id)
     {
-        return view('admin.pedidos.detallePedido');
+        return view('admin.pedidos.detallePedido'); 
     }
 
     /**
