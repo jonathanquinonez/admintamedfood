@@ -54,7 +54,7 @@
                                 <button class="btn-icon btn btn-primary btn-round btn-sm" type="button">
                                     <i class="feather icon-plus"></i> Nuevo aritculo
                                 </button>
-                            </div>
+                            </div>  
 
 
                             <div class="card-content">

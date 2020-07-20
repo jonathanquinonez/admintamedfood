@@ -25,57 +25,32 @@
                                         <div class="row">
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
-                                                    <label>Nombre</label>
-                                                    <input type="text" class="form-control {{ $errors->has('name') ? ' has-error' : '' }}" required="" value="{{ old('name') }}" name="name">
-                                                    @if ($errors->has('name'))
-                                                        <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('name') }}</strong>
-                                                    </span>
-                                                    @endif
+                                                    <label>Nombre</label>   
+                                                    <input type="text" class="form-control" value="{{$Productor[0]->name}}" disabled>
                                                 </fieldset>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Apellido</label>
-                                                    <input type="text" class="form-control {{ $errors->has('apellido_usuario') ? ' has-error' : '' }}" required="" value="{{ old('apellido_usuario') }}" name="apellido_usuario">
-                                                    @if ($errors->has('apellido_usuario'))
-                                                        <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('apellido_usuario') }}</strong>
-                                                    </span>
-                                                    @endif
+                                                    <input type="text" class="form-control" value="{{$Productor[0]->apellido }}" disabled>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-xl-4 col-md-6 col-12 mb-1">
+                                                <fieldset class="form-group">
+                                                    <label>Correo Electronico</label>
+                                                    <input type="text" class="form-control" value="{{$Productor[0]->email}}" disabled>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-xl-4 col-md-6 col-12 mb-1">
+                                                <fieldset class="form-group">
+                                                    <label>Contraseña</label>
+                                                    <input type="text" class="form-control" value="{{$Productor[0]->password}}" disabled>
                                                 </fieldset>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Telefono</label>
-                                                    <input type="text" class="form-control {{ $errors->has('telefono_usuario') ? ' has-error' : '' }}" required="" value="{{ old('telefono_usuario') }}" name="telefono_usuario">
-                                                    @if ($errors->has('telefono_usuario'))
-                                                        <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('telefono_usuario') }}</strong>
-                                                    </span>
-                                                    @endif
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-xl-4 col-md-6 col-12">
-                                                <fieldset class="form-group">
-                                                    <label>DNI</label>
-                                                    <input type="text" class="form-control {{ $errors->has('dni_usuario') ? ' has-error' : '' }}" required="" value="{{ old('dni_usuario') }}" name="dni_usuario">
-                                                    @if ($errors->has('dni_usuario'))
-                                                        <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('dni_usuario') }}</strong>
-                                                    </span>
-                                                    @endif
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-8">
-                                                <fieldset class="form-group">
-                                                    <label>Dirección</label>
-                                                    <input type="text" class="form-control {{ $errors->has('direccion_usuario') ? ' has-error' : '' }}" required="" value="{{ old('direccion_usuario') }}" name="direccion_usuario">
-                                                    @if ($errors->has('direccion_usuario'))
-                                                        <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('direccion_usuario') }}</strong>
-                                                    </span>
-                                                    @endif
+                                                    <input type="text" class="form-control" value="{{$Productor[0]->telefono}}" disabled>
                                                 </fieldset>
                                             </div>
                                             <div class="col-12">
@@ -102,16 +77,16 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Nombre</th>
-                                                            <th>Stock</th>
-                                                            <th>Medida</th>
-                                                            <th>Categoria</th>
+                                                            <th>Cantidad</th>
+                                                            <th>Subtotal</th>
+                                                            <th>Total</th>
                                                         </tr>
                                                     </thead>
                                                     
                                                     <tbody>
                                                       
                                                        <tr>
-                                                       
+                                                      
                                                     </tr>
                                                        
                                                  </tbody>
@@ -119,9 +94,9 @@
                                                     <tfoot>
                                                         <tr>
                                                             <th>Nombre</th>
-                                                            <th>Stock</th>
-                                                            <th>Medida</th>
-                                                            <th>Categoria</th>
+                                                            <th>Cantidad</th>
+                                                            <th>Subtotal</th>
+                                                            <th>Total</th>
                                                             
                                                         </tr>
                                                     </tfoot>
