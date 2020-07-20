@@ -82,6 +82,7 @@ Route::get('/ver/Productor/{id}', 'Productor\ProductorController@detalleProducto
 |--------------------------------------------------------------------------
  */
 Route::get('/ver/Deliverys', 'Delivery\DeliveryController@index')->name('verDelivery');
+Route::get('/detalle/Deliverys/{id}', 'Delivery\DeliveryController@show')->name('detalleDelivery');
 
 /*
 |--------------------------------------------------------------------------
@@ -116,5 +117,5 @@ Route::get('crear/Pedidos', 'Pedido\PedidoController@crearViewPedido')->name('cr
 Route::post('crear/Pedidos', 'Pedido\PedidoController@crearPedido')->name('crearPedido');
 Route::get('/ver/Pedidos/{id}', 'Pedido\PedidoController@detallePedido')->name('detallePedido');
 
-
+    
 

@@ -27,31 +27,31 @@
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Nombre</label>
-                                                    <input type="text" class="form-control" value="{{ $pedido[0]->name }}" disabled>
+                                                    <input type="text" class="form-control" value="{{$pedido[0]->name}}" disabled>
                                                 </fieldset>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Apellido</label>
-                                                    <input type="text" class="form-control" value="{{ $pedido[0]->apellido }}" disabled>
+                                                    <input type="text" class="form-control" value="{{$pedido[0]->apellido}}" disabled>
                                                 </fieldset>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Telefono</label>
-                                                    <input type="text" class="form-control" value="{{ $pedido[0]->telefono }}" disabled>
+                                                    <input type="text" class="form-control" value="{{$pedido[0]->telefono}}" disabled>
                                                 </fieldset>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <fieldset class="form-group">
                                                     <label>DNI</label>
-                                                    <input type="text" class="form-control" value="{{ $pedido[0]->rut }}" disabled>
+                                                    <input type="text" class="form-control" value="{{$pedido[0]->identificacion}}" disabled>
                                                 </fieldset>
                                             </div>
                                             <div class="col-8">
                                                 <fieldset class="form-group">
                                                     <label>Dirección</label>
-                                                    <input type="text" class="form-control" value="{{ $pedido[0]->direccion }}" disabled>
+                                                    <input type="text" class="form-control" value="{{$pedido[0]->direccion}}" disabled>
                                                 </fieldset>
                                             </div>
                                         </div>
@@ -60,8 +60,12 @@
 
                         </div>
                         <div class="card">
+                            
                             <div class="card-header">
                                 <h4 class="card-title">Detalle de sus pedidos</h4>
+                                <button class="btn-icon btn btn-primary btn-round btn-sm" type="button">
+                                    <i class="feather icon-plus"></i> Nuevo aritculo
+                                </button>
                             </div>
                           
                               
