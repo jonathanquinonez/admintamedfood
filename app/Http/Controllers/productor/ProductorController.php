@@ -79,7 +79,6 @@ class ProductorController extends Controller
     public function detalleProductor($id)
     {
         $Productor = Productore::join('users','users.id','=','productores.user_id')
-        ->join('productores','')
         ->select('users.*')->get();
 
 
