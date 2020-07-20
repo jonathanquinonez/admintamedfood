@@ -8,7 +8,19 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, softDeletes;
+	use Notifiable, softDeletes;
+	
+	const USUARIO_VERIFICADO =  '1';
+	const USUARIO_NO_VERIFICADO ='0';
+	
+	const USUARIO_NO_BLOQUEADO =  '1';
+    const USUARIO_BLOQUEADO ='0';
+
+	const si =  '1';
+    const no ='0';
+
+    const USUARIO_ADMINISTRADOR = 'true';
+    const USUARIO_REGULAR = 'false';
     
 	protected $table = 'users';
 
