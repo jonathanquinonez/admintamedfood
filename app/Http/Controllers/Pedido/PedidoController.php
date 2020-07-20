@@ -31,7 +31,7 @@ class PedidoController extends Controller
         'users.apellido',
         'users.telefono',
         'users.identificacion',
-        'direciones.direccion',
+        'direcciones.direccion',
         'clientes.img_perfil',
         'estados.nombre as nombre_estado'
         )
@@ -99,7 +99,8 @@ class PedidoController extends Controller
 
     public function detallePedido($id)
     {
-        $pedido = Pedido::leftJoin('users','users.id','=','clientes.user_id')
+        $pedido = Pedido::join('clientes','clientes.id','=','pedidos.cliente_id')
+            ->leftJoin('users','users.id','=','clientes.user_id')
             ->leftJoin('direcciones','direcciones.id','=','users.id')
             ->select(
                 'pedidos.id',
