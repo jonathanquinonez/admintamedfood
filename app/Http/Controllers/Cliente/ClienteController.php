@@ -28,9 +28,14 @@ class ClienteController extends Controller
         if ($buscador) {
             $dataCliente = Cliente::join('users','users.id','=','clientes.user_id')
                 ->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
-                ->whereRaw("(users.name LIKE '%{$buscador}%' OR users.apellido LIKE '%{$buscador}%')")
-                ->select('users.*',
-                    'clientes.direccion',
+                ->whereRaw("(users.name LIKE '%{$buscador}%' OR users.apellido LIKE '%{$buscador}%' OR users.identificacion LIKE '%{$buscador}%')")
+                ->select(
+                    'users.name',
+                    'users.apellido',
+                    'users.identificacion',
+                    'users.telefono',
+                    'users.verificado',
+                    'clientes.id',
                     'clientes.img_perfil',
                     'clientes.suscripcion_id'
                 )
@@ -38,8 +43,13 @@ class ClienteController extends Controller
         } else {
             $dataCliente = Cliente::join('users','users.id','=','clientes.user_id')
                 ->leftJoin('suscripciones','suscripciones.id','=','clientes.suscripcion_id')
-                ->select('users.*',
-                    'clientes.direccion',
+                ->select(
+                    'users.name',
+                    'users.apellido',
+                    'users.identificacion',
+                    'users.telefono',
+                    'users.verificado',
+                    'clientes.id',
                     'clientes.img_perfil',
                     'clientes.suscripcion_id'
                 )
@@ -63,7 +73,7 @@ class ClienteController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|max:128|confirmed',
+            'password' => 'required|string|max:128',
            // 'img_perfil' => 'mimes:jpeg,jpg,png,gif|max:10000',
             'name' => 'required|string|max:50',
             'apellido' => 'required|string|max:55',
@@ -117,18 +127,21 @@ class ClienteController extends Controller
      */
     public function editView($id)
     {
-        $data_user = User::select(
-            'users.id',
-            'users.name',
-            'users.apellido',
-            'users.telefono',
-            'users.identificacion',
-            'clientes.img_perfil',
-            'direcciones.direccion')
-            ->leftjoin('clientes', 'users.id', '=', 'clientes.user_id')
+        $data_user = Cliente::join('users','users.id','=','clientes.user_id')
             ->leftjoin('direcciones', 'users.id', '=', 'direcciones.user_id')
-            ->where('users.id', '=', $id)
-            ->get();
+            ->where('clientes.id', '=', $id)
+            ->select(
+                'users.email',
+                'users.password',
+                'users.name',
+                'users.apellido',
+                'users.identificacion',
+                'users.telefono',
+                'users.verificado',
+                'direcciones.direccion',
+                'clientes.id',
+                'clientes.img_perfil'
+            )->get();
 
         $lista_pedidos = Pedido::where('cliente_id', '=', $id)
             ->leftjoin('estados', 'estados.id', '=', 'pedidos.estado_id')
@@ -164,8 +177,8 @@ class ClienteController extends Controller
                 ->withErrors($validator->errors());
         }
 
-        $usuario = User::find($id);
-        $cliente = Cliente::where('user_id', '=', $usuario->id)->first();
+        $cliente = Cliente::find($id);
+        $usuario = User::find($cliente->user_id);
         $direccion = Direccione::where('user_id', '=', $usuario->id)->first();
 
         try {
@@ -196,7 +209,7 @@ class ClienteController extends Controller
             }
 
         } catch (\Exception $exception) {
-            return redirect()->action('Cliente\ClienteController@index');
+            return redirect()->back();
         }
 
         return redirect()->action('Cliente\ClienteController@index');

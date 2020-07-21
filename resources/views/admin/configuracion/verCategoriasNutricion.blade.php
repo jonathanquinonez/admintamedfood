@@ -100,12 +100,11 @@
                             <label for="floating-label1">Nombre</label>
                         </fieldset>
                     </div>
-                    
                     <div class="col-12">
                         <fieldset class="form-group">
                             <label for="basicInputFile">Foto</label>
                             <div class="custom-file">
-                                <input name="img_perfil" type="file" class="custom-file-input" id="inputGroupFile01">
+                                <input name="img" type="file" class="custom-file-input" id="inputGroupFile01">
                                 <label class="custom-file-label" for="inputGroupFile01"></label>
                             </div>
                         </fieldset>

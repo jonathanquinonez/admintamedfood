@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Delivery;
 
+use App\User;
 use App\Pedido;
 use App\Cliente;
 use App\Delivery;
+use App\Direccione;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class DeliveryController extends Controller
 {
@@ -61,11 +64,15 @@ class DeliveryController extends Controller
     {
 
         $dataDelivery = Delivery::select(
-            'users.*', 
-            'direcciones.direccion as direccion_user', 
+            'users.id', 
+            'users.name', 
+            'users.apellido', 
+            'users.telefono', 
+            'users.identificacion', 
+            'direcciones.direccion', 
             'direcciones.latitud', 
             'direcciones.longitud', 
-            'direcciones.detalle as detalle_direccion')
+            'direcciones.detalle')
             ->join('users', 'users.id', '=', 'delivery.user_id')
             ->Leftjoin('direcciones','direcciones.user_id','=','users.id')
             ->where('delivery.id', '=', $id)
@@ -111,7 +118,62 @@ class DeliveryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:50',
+            'apellido' => 'required|string|max:45',
+            'telefono' => 'required|string|max:45',
+            'identificacion' => 'required|string|max:100',
+            'direccion' => 'string|max:100',
+            'detalle' => 'string|max:100',
+            'latitud' => 'string|max:100',
+            'longitud' => 'string|max:100',
+        ]);
+
+        if($validator->fails())
+        {
+            return redirect()->back()
+                ->withInput($request->only(
+                    'name', 'apellido', 'telefono', 'identificacion', 'direccion','detalle','latitud','longitud'))
+                ->withErrors($validator->errors());
+        }
+        
+        $usuario = User::find($id);
+        $direccion = Direccione::where('user_id', '=', $usuario->id)->first();
+        //dd($direccion);
+        try{
+            $usuario->name = $request->name;
+            $usuario->apellido = $request->apellido;
+            $usuario->telefono = $request->telefono;
+            $usuario->identificacion = $request->identificacion;
+            $usuario->update();
+
+            if ($direccion != null) {
+                $direccion->direccion = $request->direccion;
+                $direccion->detalle = $request->detalle;
+                $direccion->longitud = $request->longitud;
+                $direccion->latitud = $request->latitud;
+                $direccion->update();
+            } else {
+                if (!empty($request->direccion)) {
+                    $direccion_nueva = Direccione::create([
+                        'user_id' => $usuario->id,
+                        'direccion' => $request->direccion,
+                        'detalle' => $request->detalle,
+                        'longitud' => $request->longitud,
+                        'latitud' => $request->latitud,
+                    ]);
+                    $direccion_nueva->save();
+                    
+                }
+            }
+
+        }catch (\Exception $exception) {
+            
+            return redirect()->back();
+        }
+       
+        return redirect()->back();
+
     }
 
     /**
