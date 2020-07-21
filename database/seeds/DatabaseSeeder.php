@@ -16,7 +16,7 @@ use App\Producto;
 use App\Productore;
 use App\Suscripcione;
 use App\TerminosCondicione;
-use App\user;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS =0');
-        user::truncate();
+        User::truncate();
         Cliente::truncate();
         CategoriasNutricional::truncate();
         CategoriasTipo::truncate();
@@ -66,27 +66,27 @@ class DatabaseSeeder extends Seeder
         ArticulosPedido::flushEventListeners();
 
 
-        $cantidadDireciones                = 10;
-        $cantidadUsuarios                  = 20;
-        $cantidadClientes                  = 20;
-        $cantidadCategoriasNutricional     = 20;
-        $cantidadCategoriasTipo            = 20;
-        $cantidadDelivery                  = 20;
-        $cantidadSuscripcione              = 20;
-        $cantidadMovimientosPedido         = 20;
-        $cantidadMovimientosProducto       = 20;
-        $cantidadMovimientosArticulosPedido= 20;
-        $cantidadPedido                    = 20;
-        $cantidadProductore                = 20;
-        $cantidadEstado                    = 20;
-        $cantidadTerminosySuscripciones    = 20;
-        $cantidadArticulosPedido           = 20;
-        $cantidadProducto                  = 20;
+        $cantidadDireciones                = 5;
+        $cantidadUsuarios                  = 5;
+        $cantidadClientes                  = 5;
+        $cantidadCategoriasNutricional     = 5;
+        $cantidadCategoriasTipo            = 5;
+        $cantidadDelivery                  = 5;
+        $cantidadSuscripcione              = 5;
+        $cantidadMovimientosPedido         = 5;
+        $cantidadMovimientosProducto       = 5;
+        $cantidadMovimientosArticulosPedido= 5;
+        $cantidadPedido                    = 5;
+        $cantidadProductore                = 5;
+        $cantidadEstado                    = 5;
+        $cantidadTerminosySuscripciones    = 5;
+        $cantidadArticulosPedido           = 5;
+        $cantidadProducto                  = 5;
 
 
 
 
-        factory(user::class, $cantidadUsuarios)                                        ->create();
+        factory(User::class, $cantidadUsuarios)                                        ->create();
         factory(Direccione::class, $cantidadDireciones)                                ->create();
         factory(TerminosCondicione::class, $cantidadTerminosySuscripciones)            ->create();
         factory(Suscripcione::class, $cantidadSuscripcione)                            ->create();

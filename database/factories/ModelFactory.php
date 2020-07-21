@@ -16,7 +16,7 @@ use App\Producto;
 use App\Productore;
 use App\Suscripcione;
 use App\TerminosCondicione;
-use App\user;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +31,7 @@ use App\user;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-$factory->define(App\user::class, function (Faker\Generator $faker) {
+$factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -41,10 +41,10 @@ $factory->define(App\user::class, function (Faker\Generator $faker) {
         'email'              => $faker                 ->unique()->safeEmail,
         'telefono'           => $faker                 ->phoneNumber,
         'password'           => $password ?: $password = bcrypt('123456'),
-        'admin'              => $faker                 ->randomElement([user::USUARIO_ADMINISTRADOR, user::USUARIO_REGULAR]),
-        'verificado'         => $faker                 ->randomElement([user::USUARIO_VERIFICADO, user::USUARIO_NO_VERIFICADO]),
-        'bloqueado'          => $faker                 ->randomElement([user::USUARIO_NO_BLOQUEADO, user::USUARIO_BLOQUEADO]),
-        'notificaciones'     => $faker                 ->randomElement([user::si,user::no]),
+        'admin'              => $faker                 ->randomElement([User::USUARIO_ADMINISTRADOR, User::USUARIO_REGULAR]),
+        'verificado'         => $faker                 ->randomElement([User::USUARIO_VERIFICADO, User::USUARIO_NO_VERIFICADO]),
+        'bloqueado'          => $faker                 ->randomElement([User::USUARIO_NO_BLOQUEADO, User::USUARIO_BLOQUEADO]),
+        'notificaciones'     => $faker                 ->randomElement([User::si,User::no]),
     ];
 });
 
@@ -173,8 +173,7 @@ $factory->define(App\Producto::class, function (Faker\Generator $faker) {
 $factory->define(App\Pedido::class, function (Faker\Generator $faker) {
 
     return [
-        'cantidad'               => $faker->numberBetween(1,10),
-        'precio'                 => $faker->numberBetween(1,10),
+        'total'                 => $faker->numberBetween(1,10),
         'cliente_id'              =>function() {
             return factory(Cliente::class)->create()->id;
         },
