@@ -25,6 +25,12 @@
                                         <div class="row">
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <fieldset class="form-group">
+                                                    <label>Correo</label>
+                                                    <input type="text" class="form-control" disabled value="{{ $data_user[0]->email }}">
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-xl-4 col-md-6 col-12">
+                                                <fieldset class="form-group">
                                                     <label>Contraseña</label>
                                                     <input type="password" class="form-control {{ $errors->has('password') ? ' has-error' : '' }}" value="" name="password">
                                                     @if ($errors->has('password'))
