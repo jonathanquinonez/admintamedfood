@@ -130,7 +130,7 @@
                                                 <span id="place-address"></span>
                                             </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12" style="margin-top: 20px">
                                                 <button type="submit" class="btn btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Actualizar</button>
                                             </div>
                                         </div>
@@ -261,6 +261,7 @@
       autocomplete.addListener('place_changed', function() {
         infowindow.close();
         marker.setVisible(false);
+        
         var place = autocomplete.getPlace();
         if (!place.geometry) {
           // User entered the name of a Place that was not suggested and
@@ -294,11 +295,11 @@
         infowindowContent.children['place-address'].textContent = address;
         infowindow.open(map, marker);
         document.f1.direccion_user.value = address;
-        document.f1.latitud.value = place.lat;
-        document.f1.longitud.value = place.lng;
+        document.f1.latitud.value = marker.getPosition().lat();
+        document.f1.longitud.value = marker.getPosition().lng();
         console.log("direccion",document.f1.direccion_user.value);
-        console.log("lng",map.location.lng);
-        console.log("lat",place.geometry.location.lat);
+        console.log("lng",marker.getPosition().lng());
+        console.log("lat",marker.getPosition().lat());
       });
 
       // Sets a listener on a radio button to change the filter type on Places
