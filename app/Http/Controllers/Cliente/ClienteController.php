@@ -196,7 +196,7 @@ class ClienteController extends Controller
             }
 
         } catch (\Exception $exception) {
-            return redirect()->action('Cliente\ClienteController@index');
+            return redirect()->back();
         }
 
         return redirect()->action('Cliente\ClienteController@index');

@@ -83,6 +83,7 @@ Route::get('/ver/Productor/{id}', 'Productor\ProductorController@detalleProducto
  */
 Route::get('/ver/Deliverys', 'Delivery\DeliveryController@index')->name('verDelivery');
 Route::get('/detalle/Deliverys/{id}', 'Delivery\DeliveryController@show')->name('detalleDelivery');
+Route::post('/actualizar/Deliverys/{id}', 'Delivery\DeliveryController@update')->name('actualizarDelivery');
 
 /*
 |--------------------------------------------------------------------------

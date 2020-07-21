@@ -22,7 +22,7 @@
                             <div class="card-header">
                                 <h4 class="card-title">Detalle del Delivery</h4>
                             </div>
-                            <form method="POST" action="#" name="f1" id="f1">
+                        <form method="POST" action="{{route('actualizarDelivery', [$dataDelivery->id])}}" name="f1" id="f1">
                                 {{ csrf_field() }}
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
@@ -42,7 +42,7 @@
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Apellido</label>
-                                                    <input type="text" class="form-control {{ $errors->has('apellido') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->apellido }}" name="apellido_usuario">
+                                                    <input type="text" class="form-control {{ $errors->has('apellido') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->apellido }}" name="apellido">
                                                     @if ($errors->has('apellido'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('apellido') }}</strong>
@@ -53,10 +53,10 @@
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Telefono</label>
-                                                    <input type="text" class="form-control {{ $errors->has('telefono_usuario') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->telefono }}" name="telefono_usuario">
-                                                    @if ($errors->has('telefono_usuario'))
+                                                    <input type="text" class="form-control {{ $errors->has('telefono') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->telefono }}" name="telefono">
+                                                    @if ($errors->has('telefono'))
                                                         <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('telefono_usuario') }}</strong>
+                                                        <strong>{{ $errors->first('telefono') }}</strong>
                                                     </span>
                                                     @endif
                                                 </fieldset>
@@ -75,10 +75,10 @@
                                             <div class="col-4">
                                                 <fieldset class="form-group">
                                                     <label>Dirección</label>
-                                                    <input type="text" class="form-control {{ $errors->has('direccion_user') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->direccion_user }}" name="direccion_user" id="direccion_user">
-                                                    @if ($errors->has('direccion_user'))
+                                                    <input type="text" class="form-control {{ $errors->has('direccion') ? ' has-error' : '' }}" required="" readonly value="{{ $dataDelivery->direccion }}" name="direccion" id="direccion_user">
+                                                    @if ($errors->has('direccion'))
                                                         <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('direccion_user') }}</strong>
+                                                        <strong>{{ $errors->first('direccion') }}</strong>
                                                     </span>
                                                     @endif
                                                 </fieldset>
@@ -86,10 +86,10 @@
                                             <div class="col-4">
                                                 <fieldset class="form-group">
                                                     <label>Detalle Dirección</label>
-                                                    <input type="text" class="form-control {{ $errors->has('detalle_direccion') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->detalle_direccion }}" name="detalle_direccion" >
-                                                    @if ($errors->has('detalle_direccion'))
+                                                    <input type="text" class="form-control {{ $errors->has('detalle') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->detalle }}" name="detalle" >
+                                                    @if ($errors->has('detalle'))
                                                         <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('detalle_direccion') }}</strong>
+                                                        <strong>{{ $errors->first('detalle') }}</strong>
                                                     </span>
                                                     @endif
                                                 </fieldset>
@@ -97,7 +97,7 @@
                                             <div class="col-4">
                                                 <fieldset class="form-group">
                                                     <label>Latitud</label>
-                                                    <input type="text" class="form-control {{ $errors->has('latitud') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->latitud }}" name="latitud" id="latitud">
+                                                    <input type="text" class="form-control {{ $errors->has('latitud') ? ' has-error' : '' }}" required="" readonly value="{{ $dataDelivery->latitud }}" name="latitud" id="latitud">
                                                     @if ($errors->has('latitud'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('latitud') }}</strong>
@@ -108,7 +108,7 @@
                                             <div class="col-4">
                                                 <fieldset class="form-group">
                                                     <label>Longitud</label>
-                                                    <input type="text" class="form-control {{ $errors->has('longitud') ? ' has-error' : '' }}" required="" value="{{ $dataDelivery->longitud }}" name="longitud" id="longitud">
+                                                    <input type="text" class="form-control {{ $errors->has('longitud') ? ' has-error' : '' }}" required="" readonly value="{{ $dataDelivery->longitud }}" name="longitud" id="longitud">
                                                     @if ($errors->has('longitud'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('longitud') }}</strong>
@@ -120,7 +120,7 @@
                                             <div>
                                                 <div id="pac-container">
                                                 <input id="pac-input" type="text" class="form-control"
-                                                    placeholder="Buscar dsirección">
+                                                    placeholder="Buscar dirección">
                                                 </div>
                                             </div>
                                             <div id="map" style="height: 200px"></div>
@@ -228,8 +228,14 @@
     // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
     function initMap() {
+        console.log("lat",document.f1.latitud.value)
+        console.log("Lng",document.f1.longitud.value)
+        pos = {
+            lat: parseFloat(document.f1.latitud.value),
+            lng: parseFloat(document.f1.longitud.value)
+        }
       var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -33.8688, lng: 151.2195},
+        center: pos,
         zoom: 13
       });
       var card = document.getElementById('pac-card');
@@ -255,7 +261,9 @@
       infowindow.setContent(infowindowContent);
       var marker = new google.maps.Marker({
         map: map,
-        anchorPoint: new google.maps.Point(0, -29)
+        anchorPoint: new google.maps.Point(0, -29),
+        position: pos,
+        zoom: 13
       });
 
       autocomplete.addListener('place_changed', function() {
@@ -300,6 +308,7 @@
         console.log("direccion",document.f1.direccion_user.value);
         console.log("lng",marker.getPosition().lng());
         console.log("lat",marker.getPosition().lat());
+        console.log("pos",pos);
       });
 
       // Sets a listener on a radio button to change the filter type on Places
