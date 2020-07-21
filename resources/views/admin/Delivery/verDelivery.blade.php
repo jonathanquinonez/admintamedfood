@@ -15,6 +15,21 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Delivery</h4>
+                    <div class="d-flex flex-row">
+                        <form method="GET" action="{{ route('verProductos') }}">
+                            <fieldset class="mr-1">
+                                <div class="input-group">
+                                    <input name="buscador" {{ old("buscador") }} type="text" class="form-control" placeholder="Nombre, Identificacion" aria-describedby="button-addon2">
+                                    <div class="input-group-append" id="button-addon2">
+                                        <button class="btn btn-primary waves-effect waves-light" type="submit">
+                                            <i class="feather icon-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <a href="{{route('crearViewProducto')}}" class="btn btn-success waves-effect waves-light"><i class="feather icon-check-square"></i>&nbsp; Nuevo</a>
+                    </div>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
