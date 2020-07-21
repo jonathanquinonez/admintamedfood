@@ -154,7 +154,6 @@ $factory->define(App\Producto::class, function (Faker\Generator $faker) {
 
     return [
         'medida'                    => $faker->word,
-        'img'                       => $faker->image,
         'stock'                     => $faker->numberBetween(1,10),
         'nombre'                    => $faker->firstName,
         'productor_id'              =>function() {
