@@ -42,7 +42,7 @@
                                     <tr>
                                         <th>Nombre completo</th>
                                         <th>Teléfono</th>
-                                        <th>Rut</th>
+                                        <th>DNI</th>
                                         <th>Imagen</th>
                                         <th>Verificado</th>
                                         <th>Suscripcion</th>
@@ -73,7 +73,7 @@
                                         </td>
                                         <td>
                                             <a href="{{route('editarViewCliente', $item->id)}}" class="btn btn-sm btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Ver</a>
-                                            <a href="{{route('editarViewCliente', $item->id)}}" class="btn btn-sm btn-danger waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Borrar</a>
+                                            <a class="btn btn-sm btn-danger waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Borrar</a>
                                         </td>
                                     </tr>
                                    @endforeach   
