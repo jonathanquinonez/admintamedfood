@@ -45,7 +45,7 @@
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <fieldset class="form-group">
                                                     <label>DNI</label>
-                                                    <input type="text" class="form-control" value="{{$pedido[0]->identificacion}}" disabled>
+                                                    <input type="text" class="form-control" value="{{$pedido[0]->identificacion }}" disabled>
                                                 </fieldset>
                                             </div>
                                             <div class="col-8">

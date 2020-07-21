@@ -51,7 +51,7 @@
                                     </td>
                                     <td>{{$item->email}}</td>
                                     <td>
-                                    <a type="button" href="{{route('detalleProductor',[$item->id])}}" class="btn btn-success mr-1 mb-1"><i class="feather icon-check-square"></i> Ver</button>          
+                                        <a href="{{route('detalleProductor', $item->id)}}" class="btn btn-sm btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Ver</a>
                                     </td>
                                 </tr>
                                    @endforeach   
@@ -69,6 +69,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
+                            {{ $dataProductor->links() }}
                         </div>
                     </div>
                 </div>

@@ -74,7 +74,9 @@ Route::post('/editar/Clientes/{id}', 'Cliente\ClienteController@edit')->name('ed
  */
 Route::get('/ver/Productores', 'Productor\ProductorController@index')->name('verProductor');
 Route::get('/crear/Productor', 'Productor\ProductorController@crearViewProductor')->name('crearViewProductor');
+Route::post('/crear/Productor', 'Productor\ProductorController@crearProductor')->name('crearProductor');
 Route::get('/ver/Productor/{id}', 'Productor\ProductorController@detalleProductor')->name('detalleProductor');
+Route::post('/actualizar/Productor/{id}', 'Productor\ProductorController@update')->name('actualizarProductor');
 
 /*
 |--------------------------------------------------------------------------
