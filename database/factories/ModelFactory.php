@@ -2,6 +2,8 @@
 
 use App\ArticulosPedido;
 use App\Cliente;
+use App\CategoriasNutricional;
+use App\CategoriasTipo;
 use App\Delivery;
 use App\Direccione;
 use App\Estado;
@@ -10,6 +12,7 @@ use App\MovimientosPedido;
 use App\MovimientosProducto;
 use App\PasswordReset;
 use App\Pedido;
+use App\Producto;
 use App\Productore;
 use App\Suscripcione;
 use App\TerminosCondicione;
@@ -34,6 +37,7 @@ $factory->define(App\user::class, function (Faker\Generator $faker) {
     return [
         'name'               => $faker                 ->firstName,
         'apellido'           => $faker                 ->lastName,
+        'identificacion'     => $faker                 ->word,
         'email'              => $faker                 ->unique()->safeEmail,
         'telefono'           => $faker                 ->phoneNumber,
         'password'           => $password ?: $password = bcrypt('123456'),
@@ -77,24 +81,28 @@ $factory->define(App\Suscripcione::class, function (Faker\Generator $faker) {
         'detalle'                 => $faker ->paragraph(1),
         'porcentaje'              => $faker ->numberBetween(1,20),
         'img'                     => $faker ->image,
-        'terminos_condiciones'    => function() {
+        'terminos_condiciones_id' => function() {
             return factory(TerminosCondicione::class)->create()->id;
         }
     ];
 });
 
+
 $factory->define(App\Cliente::class, function (Faker\Generator $faker) {
 
     return [
-        'img_perfil'        => $faker                ->image,
-        'user_id'           => function() {
+        'img_perfil'                    => $faker                ->image,
+
+        'user_id'                       => function() {
             return factory(User::class)->create()->id;
         },
-        'suscripcion_id'    => function() {
+
+        'suscripcion_id'                => function() {
             return factory(Suscripcione::class)->create()->id;
         }
     ];
 });
+
 
 $factory->define(App\Delivery::class, function (Faker\Generator $faker) {
 
@@ -104,3 +112,135 @@ $factory->define(App\Delivery::class, function (Faker\Generator $faker) {
         }
     ];
 });
+
+
+$factory->define(App\Estado::class, function (Faker\Generator $faker) {
+
+    return [
+        'nombre' => $faker ->firstName,
+    ];
+});
+
+
+$factory->define(App\Productore::class, function (Faker\Generator $faker) {
+
+    return [
+        'user_id'            =>function() {
+            return factory(User::class)->create()->id;
+        }
+    ];
+});
+#######################################################################################
+$factory->define(App\CategoriasTipo::class, function (Faker\Generator $faker) {
+
+    return [
+        'nombre'             =>$faker ->firstName,
+        'img'                =>$faker ->image, 
+        'estado'             =>$faker->randomElement([CategoriasTipo::si,CategoriasTipo::no]),
+    ];
+});
+
+$factory->define(App\CategoriasNutricional::class, function (Faker\Generator $faker) {
+
+    return [
+        'nombre'             =>$faker ->firstName,
+        'img'                =>$faker ->image, 
+        'estado'             =>$faker->randomElement([CategoriasNutricional::si,CategoriasNutricional::no]),
+    ];
+});
+
+#######################################################################################
+$factory->define(App\Producto::class, function (Faker\Generator $faker) {
+
+    return [
+        'medida'                    => $faker->word,
+        'img'                       => $faker->image,
+        'stock'                     => $faker->numberBetween(1,10),
+        'nombre'                    => $faker->firstName,
+        'productor_id'              =>function() {
+            return factory(Productore::class)->create()->id;
+        },
+        'categoria_tipo_id'         =>function() {
+            return factory(CategoriasTipo::class)->create()->id;
+        },
+        'categoria_nutricional_id'  =>function() {
+            return factory(CategoriasNutricional::class)->create()->id;
+        }
+
+    ];
+});
+#######################################################################################
+$factory->define(App\Pedido::class, function (Faker\Generator $faker) {
+
+    return [
+        'cantidad'               => $faker->numberBetween(1,10),
+        'precio'                 => $faker->numberBetween(1,10),
+        'cliente_id'              =>function() {
+            return factory(Cliente::class)->create()->id;
+        },
+        'delivery_id'            =>function() {
+            return factory(Delivery::class)->create()->id;
+        },
+        'estado_id'            =>function() {
+            return factory(Estado::class)->create()->id;
+        }
+
+    ];
+});
+
+$factory->define(App\ArticulosPedido::class, function (Faker\Generator $faker) {
+
+    return [
+        'cantidad'               => $faker->numberBetween(1,10),
+        'precio'                 => $faker->numberBetween(1,10),
+        'pedido_id'              =>function() {
+            return factory(Pedido::class)->create()->id;
+        },
+        'producto_id'            =>function() {
+            return factory(Producto::class)->create()->id;
+        }
+
+    ];
+});
+
+
+$factory->define(App\MovimientosArticulosPedido::class, function (Faker\Generator $faker) {
+
+    return [
+        'stock_actual' => $faker ->numberBetween(1,10),
+        'cantidad'     => $faker ->numberBetween(1,10),
+        'articulo_pedido_id' =>function(){
+            return factory(ArticulosPedido::class)->create()->id;
+        },
+        'estado_id' =>function(){
+            return factory(Estado::class)->create()->id;
+        }
+    ];
+});
+
+
+$factory->define(App\MovimientosProducto::class, function (Faker\Generator $faker) {
+
+    return [
+        'cantidad'        => $faker ->numberBetween(1,10),
+        'stock_actual'     => $faker ->numberBetween(1,10),
+        'tipo_movimiento'  => $faker ->word,
+        'producto_id'              =>function() {
+            return factory(Producto::class)->create()->id;
+        }        
+    ];
+});
+
+$factory->define(App\MovimientosPedido::class, function (Faker\Generator $faker) {
+
+    return [
+        'pedido_id'              =>function() {
+            return factory(Pedido::class)->create()->id;
+        },
+        'estado_id'              =>function() {
+            return factory(Estado::class)->create()->id;
+        }        
+    ];
+});
+
+

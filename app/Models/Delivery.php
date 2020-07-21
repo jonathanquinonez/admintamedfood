@@ -4,14 +4,15 @@
  * Created by Reliese Model.
  */
 
-namespace App;
+namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Productore
+ * Class Delivery
  * 
  * @property int $id
  * @property int $user_id
@@ -20,15 +21,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $deleted_at
  * 
  * @property User $user
+ * @property Collection|Pedido[] $pedidos
  *
  * @package App\Models
  */
-class Productore extends Model
+class Delivery extends Model
 {
 	use SoftDeletes;
-
-
-	protected $table = 'productores';
+	protected $table = 'delivery';
 
 	protected $casts = [
 		'user_id' => 'int'
@@ -41,5 +41,10 @@ class Productore extends Model
 	public function user()
 	{
 		return $this->belongsTo(User::class);
+	}
+
+	public function pedidos()
+	{
+		return $this->hasMany(Pedido::class);
 	}
 }
