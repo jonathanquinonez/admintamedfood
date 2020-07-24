@@ -84,6 +84,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
+                            {{ $dataPedidos->links() }}
                         </div>
                     </div>
                 </div>

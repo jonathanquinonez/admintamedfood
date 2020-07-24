@@ -15,10 +15,25 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Productores</h4>
+                <div class="d-flex flex-row">
+                    <form method="GET" action="{{ route('verProductor') }}">
+                        <fieldset class="mr-1">
+                            <div class="input-group">
+                                <input name="buscador" {{ old("buscador") }} type="text" class="form-control" placeholder="Nombre, Rut" aria-describedby="button-addon2">
+                                <div class="input-group-append" id="button-addon2">
+                                    <button class="btn btn-primary waves-effect waves-light" type="submit">
+                                        <i class="feather icon-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
                 <a type="button" href="{{route('crearViewProductor')}}" class="btn btn-success mr-1 mb-1" ><i class="feather icon-check-square"></i> Nuevo</a>          
-
+            </div>
                 </div>
+                
                 <div class="card-content">
+                    
                     <div class="card-body card-dashboard">
                         
                         <div class="table-responsive">

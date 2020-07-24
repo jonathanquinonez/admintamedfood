@@ -35,7 +35,7 @@ class PedidoController extends Controller
         'clientes.img_perfil',
         'estados.nombre as nombre_estado'
         )
-        ->get();
+        ->paginate(5);
         
         return view('admin.pedidos.verPedidos',compact('dataPedidos'));
 

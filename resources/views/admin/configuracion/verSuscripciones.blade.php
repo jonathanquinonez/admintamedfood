@@ -61,6 +61,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
+                            {{ $dataSuscripcion->links() }}
                         </div>
                     </div>
                 </div>

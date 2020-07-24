@@ -16,9 +16,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Categoria Por Aporte Nutricional</h4>
+                    <h4 class="card-title">Categoría por tipo de Fruta</h4>
                     <button type="button" class="btn btn-success mr-1 mb-1" data-toggle="modal" data-target="#inlineForm"><i class="feather icon-check-square"></i> Nuevo</button>          
-
+      
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
@@ -49,12 +49,12 @@
                                     </td>
                                    <td>
                                     @if($item->estado == 1)
-                                   <a href="{{route('actualizarEstadoCategoriaNutricion',[$item->id,$item->estado])}}">
+                                   <a href="{{route('actualizarEstadoCategoriaTipo',[$item->id,$item->estado])}}">
                                     <div class="badge badge-danger">Inhabilitar</div>
                                     </a>
                                     @endif
                                     @if($item->estado != 1)
-                                <a href="{{route('actualizarEstadoCategoriaNutricion',[$item->id,$item->estado])}}">
+                                <a href="{{route('actualizarEstadoCategoriaTipo',[$item->id,$item->estado])}}">
                                     <div class="badge badge-success">Habilitar</div>
                                     </a>
                                     @endif
@@ -87,12 +87,12 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel33">Crear Categoria De Nutricion</h4>
+                <h4 class="modal-title" id="myModalLabel33">Crear Categoria De Tipos De Rutas</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="{{route('crearCategoriaNutricion')}}" enctype="multipart/form-data">
+            <form method="POST" action="{{route('crearCategoriaTipo')}}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-body">
                     <div class="col-12">
@@ -101,15 +101,17 @@
                             <label for="floating-label1">Nombre</label>
                         </fieldset>
                     </div>
+                    
                     <div class="col-12">
                         <fieldset class="form-group">
                             <label for="basicInputFile">Foto</label>
                             <div class="custom-file">
-                                <input name="img" type="file" class="custom-file-input" id="inputGroupFile01">
+                                <input name="img_perfil" type="file" class="custom-file-input" id="inputGroupFile01">
                                 <label class="custom-file-label" for="inputGroupFile01"></label>
                             </div>
                         </fieldset>
                     </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">Guardar</button>

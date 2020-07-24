@@ -18,7 +18,7 @@
                             <div class="card-header">
                                 <h4 class="card-title">Crear Producto</h4>
                             </div>
-                            <form method="POST" action="{{ route('crearProducto') }}">
+                            <form method="POST" action="{{ route('crearProductoo') }}">
                                 {{ csrf_field() }}
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
@@ -28,7 +28,7 @@
                                                 <fieldset class="form-group">
                                                     <label for="basicInputFile">Productor</label>
                                                     <div class="form-group" data-select2-id="126">
-                                                        <select class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                        <select class="select2 form-control select2-hidden-accessible" data-select2-id="2" tabindex="-2" aria-hidden="true" name="productor_id">
                                                             @foreach($lista_productores as $productores)
                                                                 <option value="{{ $productores->id }}">{{ $productores->name }} {{ $productores->apellido }}</option>
                                                             @endforeach
@@ -45,68 +45,75 @@
                                         <div class="row">
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
-                                                    <label for="basicInputFile">Foto</label>
-                                                    <div class="custom-file">
-                                                        <input name="img_perfil" type="file" class="custom-file-input" id="inputGroupFile01">
-                                                        <label class="custom-file-label" for="inputGroupFile01"></label>
-                                                    </div>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-xl-4 col-md-6 col-12 mb-1">
-                                                <fieldset class="form-group">
-                                                    <label>Nombre</label>
-                                                    <input type="text" class="form-control {{ $errors->has('name') ? ' has-error' : '' }}" required="" value="{{ old('name') }}" name="name">
-                                                    @if ($errors->has('name'))
+                                                    <label>Nombre Del Producto</label>
+                                                    <input type="text" class="form-control" value="{{ old('nombre') }}" name="nombre">
+                                                    @if ($errors->has('nombre'))
                                                         <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('name') }}</strong>
+                                                        <strong>{{ $errors->first('nombre') }}</strong>
                                                     </span>
                                                     @endif
                                                 </fieldset>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
-                                                    <label>Apellido</label>
-                                                    <input type="text" class="form-control {{ $errors->has('apellido') ? ' has-error' : '' }}" required="" value="{{ old('apellido') }}" name="apellido">
-                                                    @if ($errors->has('apellido'))
+                                                    <label>Stock</label>
+                                                    <input type="text" class="form-control" value="{{ old('stock') }}" name="stock">
+                                                    @if ($errors->has('stock'))
                                                         <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('apellido') }}</strong>
+                                                        <strong>{{ $errors->first('stock') }}</strong>
                                                     </span>
                                                     @endif
                                                 </fieldset>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
-                                                    <label>Telefono</label>
-                                                    <input type="text" class="form-control {{ $errors->has('telefono') ? ' has-error' : '' }}" required="" value="{{ old('telefono') }}" name="telefono">
-                                                    @if ($errors->has('telefono'))
+                                                    <label>Precio</label>
+                                                    <input type="text" class="form-control" value="{{ old('precio') }}" name="precio">
+                                                    @if ($errors->has('precio'))
                                                         <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('telefono') }}</strong>
+                                                        <strong>{{ $errors->first('precio') }}</strong>
                                                     </span>
                                                     @endif
                                                 </fieldset>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <fieldset class="form-group">
-                                                    <label>DNI</label>
-                                                    <input type="text" class="form-control {{ $errors->has('identificacion') ? ' has-error' : '' }}" required="" value="{{ old('identificacion') }}" name="identificacion">
-                                                    @if ($errors->has('rut'))
+                                                    <label>Unidad De Medida</label>
+                                                    <input type="text" class="form-control" value="{{ old('medida') }}" name="medida">
+                                                    @if ($errors->has('medida'))
                                                         <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('identificacion') }}</strong>
+                                                        <strong>{{ $errors->first('medida') }}</strong>
                                                     </span>
                                                     @endif
                                                 </fieldset>
                                             </div>
-                                            <div class="col-12">
+
+                                            
+                                            <div class="col-xl-4 col-md-6 col-12">
                                                 <fieldset class="form-group">
-                                                    <label>Dirección</label>
-                                                    <input type="text" class="form-control {{ $errors->has('direccion') ? ' has-error' : '' }}" required="" value="{{ old('direccion') }}" name="direccion">
-                                                    @if ($errors->has('direccion'))
-                                                        <span class="help-block badge bg-danger">
-                                                        <strong>{{ $errors->first('direccion') }}</strong>
-                                                    </span>
-                                                    @endif
+                                                    <label for="basicInputFile">Categoria Producto</label>
+                                                    <div class="form-group" data-select2-id="126">
+                                                        <select class="select2 form-control select2-hidden-accessible" data-select2-id="3" tabindex="-3" aria-hidden="true" name="categoria_tipo_id">
+                                                            @foreach($lista_categoriaTipo as $tipos)
+                                                                <option value="{{ $tipos->id }}">{{ $tipos->nombre }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </fieldset>
-                                            </div>
+                                            </div>   
+
+                                            <div class="col-xl-4 col-md-6 col-12">
+                                                <fieldset class="form-group">
+                                                    <label for="basicInputFile">Categoria Nutricional</label>
+                                                    <div class="form-group" data-select2-id="126">
+                                                        <select class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true" name="categoria_nutricional_id">
+                                                            @foreach($lista_categoriaNutricion as $nutricion)
+                                                                <option value="{{ $nutricion->id }}">{{ $nutricion->nombre }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </fieldset>
+                                            </div>                                                              
                                             <div class="col-12">
                                                 <button type="submit" class="btn btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Guardar</button>
                                                 <a href="{{ url()->previous() }}" class="btn btn-danger waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Cancelar</a>

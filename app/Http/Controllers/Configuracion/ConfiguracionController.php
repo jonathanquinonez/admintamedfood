@@ -31,7 +31,7 @@ class ConfiguracionController extends Controller
     public function verCategoriaNutricional()
     {
         $dataConfiguracion = DB::table('categorias_nutricional')
-        ->get();
+        ->paginate(5);
         return view('admin.configuracion.verCategoriasNutricion',compact('dataConfiguracion'));
     }
 
@@ -55,7 +55,7 @@ class ConfiguracionController extends Controller
     public function verSuscripciones()
     {
         $dataSuscripcion = DB::table('suscripciones')
-        ->get();
+        ->paginate(5);
         return view('admin.configuracion.verSuscripciones',compact('dataSuscripcion'));
     }
 

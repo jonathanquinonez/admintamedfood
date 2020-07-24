@@ -138,7 +138,9 @@
                     </i><span class="menu-title" data-i18n="Email">Delivery</span></a>
                 </li>
 
-                <li class=" nav-item"><a href="#"><i class="feather icon-check-circle"></i><span class="menu-title" data-i18n="Email">Receptores</span></a>
+            <li class=" nav-item"><a href="{{route('verReceptor')}}">
+                <i class="feather icon-check-circle">
+                    </i><span class="menu-title" data-i18n="Email">Receptores</span></a>
                 </li>
               
             <li class=" nav-item"><a href="{{route('verPedidos')}}">

@@ -51,7 +51,6 @@ Route::post('verificando', 'Admin\AdminController@verificando')->name('verifican
 | User
 |--------------------------------------------------------------------------
  */
-
 Route::get('/ver/perfil/{id}', 'User\UserController@verPerfil')->name('verPerfil');
 Route::get('/editar/perfil/{id}', 'User\UserController@editarPerfil')->name('editarPerfil');
 
@@ -128,5 +127,13 @@ Route::get('/ver/Pedidos/{id}', 'Pedido\PedidoController@detallePedido')->name('
 Route::get('/ver/productos', 'Producto\ProductoController@index')->name('verProductos');
 Route::get('/ver/productos/{id}', 'Producto\ProductoController@verDetalleProducto')->name('verDetalleProducto');
 Route::get('/crear/productos', 'Producto\ProductoController@crearViewProducto')->name('crearViewProducto');
-Route::post('/crear/productos', 'Producto\ProductoController@crearProducto')->name('crearProducto');
+Route::post('/crear/productos', 'Producto\ProductoController@crearProductoo')->name('crearProductoo');
+
+/*
+|--------------------------------------------------------------------------
+| Receptores
+|--------------------------------------------------------------------------
+ */
+
+Route::get('/ver/receptores', 'Receptor\ReceptorController@index')->name('verReceptor');
 

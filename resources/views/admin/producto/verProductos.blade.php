@@ -59,7 +59,7 @@
                                                     <td>{{$item->medida}}</td>
                                                     <td>{{$item->precio}}</td>
                                                     <td>{{$item->categoria_producto}}</td>
-                                                    <td>{{$item->categoria_nutricional}}</td>
+                                                    <td>{{$item->categorias_nutricional}}</td>
                                                     <td>{{$item->name}} {{$item->apellido}}</td>
                                                     <td>
                                                         <a href="{{route('verDetalleProducto', $item->id)}}" class="btn btn-sm btn-success waves-effect waves-light"><i class="ficon feather icon-search"></i>&nbsp; Ver</a>

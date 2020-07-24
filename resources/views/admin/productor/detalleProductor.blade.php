@@ -31,7 +31,7 @@
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Nombre</label>
-                                                    <input type="text" class="form-control {{ $errors->has('name') ? ' has-error' : '' }}" required="" value="{{ $dataProductor[0]->name }}" name="name">
+                                                    <input type="text" class="form-control"" value="{{ $dataProductor[0]->name }}" name="name">
                                                     @if ($errors->has('name'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('name') }}</strong>
@@ -42,7 +42,7 @@
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Apellido</label>
-                                                    <input type="text" class="form-control {{ $errors->has('apellido') ? ' has-error' : '' }}" required="" value="{{ $dataProductor[0]->apellido }}" name="apellido">
+                                                    <input type="text" class="form-control" value="{{ $dataProductor[0]->apellido }}" name="apellido">
                                                     @if ($errors->has('apellido'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('apellido') }}</strong>
@@ -53,7 +53,7 @@
                                             <div class="col-xl-4 col-md-6 col-12 mb-1">
                                                 <fieldset class="form-group">
                                                     <label>Telefono</label>
-                                                    <input type="text" class="form-control {{ $errors->has('telefono') ? ' has-error' : '' }}" required="" value="{{ $dataProductor[0]->telefono }}" name="telefono">
+                                                    <input type="text" class="form-control" value="{{ $dataProductor[0]->telefono }}" name="telefono">
                                                     @if ($errors->has('telefono'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('telefono') }}</strong>
@@ -64,7 +64,7 @@
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <fieldset class="form-group">
                                                     <label>DNI</label>
-                                                    <input type="text" class="form-control {{ $errors->has('identificacion') ? ' has-error' : '' }}" required="" value="{{ $dataProductor[0]->identificacion }}" name="identificacion">
+                                                    <input type="text" class="form-control" value="{{ $dataProductor[0]->identificacion }}" name="identificacion">
                                                     @if ($errors->has('identificacion'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('identificacion') }}</strong>
@@ -75,7 +75,7 @@
                                             <div class="col-4">
                                                 <fieldset class="form-group">
                                                     <label>Dirección</label>
-                                                    <input type="text" class="form-control {{ $errors->has('direccion') ? ' has-error' : '' }}" required="" readonly value="{{ $dataProductor[0]->direccion }}" name="direccion" id="direccion_user">
+                                                    <input type="text" class="form-control" readonly value="{{ $dataProductor[0]->direccion }}" name="direccion" id="direccion_user">
                                                     @if ($errors->has('direccion'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('direccion') }}</strong>
@@ -86,7 +86,7 @@
                                             <div class="col-4">
                                                 <fieldset class="form-group">
                                                     <label>Detalle Dirección</label>
-                                                    <input type="text" class="form-control {{ $errors->has('detalle') ? ' has-error' : '' }}" required="" value="{{ $dataProductor[0]->detalle }}" name="detalle" >
+                                                    <input type="text" class="form-control" value="{{ $dataProductor[0]->detalle }}" name="detalle" >
                                                     @if ($errors->has('detalle'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('detalle') }}</strong>
@@ -97,7 +97,7 @@
                                             <div class="col-4">
                                                 <fieldset class="form-group">
                                                     <label>Latitud</label>
-                                                    <input type="text" class="form-control {{ $errors->has('latitud') ? ' has-error' : '' }}" required="" readonly value="{{ $dataProductor[0]->latitud }}" name="latitud" id="latitud">
+                                                    <input type="text" class="form-control" readonly value="{{ $dataProductor[0]->latitud }}" name="latitud" id="latitud">
                                                     @if ($errors->has('latitud'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('latitud') }}</strong>
@@ -108,7 +108,7 @@
                                             <div class="col-4">
                                                 <fieldset class="form-group">
                                                     <label>Longitud</label>
-                                                    <input type="text" class="form-control {{ $errors->has('longitud') ? ' has-error' : '' }}" required="" readonly value="{{ $dataProductor[0]->longitud }}" name="longitud" id="longitud">
+                                                    <input type="text" class="form-control" readonly value="{{ $dataProductor[0]->longitud }}" name="longitud" id="longitud">
                                                     @if ($errors->has('longitud'))
                                                         <span class="help-block badge bg-danger">
                                                         <strong>{{ $errors->first('longitud') }}</strong>
@@ -141,7 +141,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Detalle de sus Pedidos</h4>
+                                <h4 class="card-title">Detalle de sus Productos</h4>
                             </div>
                           
                               
@@ -168,6 +168,7 @@
                                                 <tbody>
                                                     @foreach ($dataProductor as $item)
                                                     <tr>
+                                                      
                                                         <td>{{$item->name}}</td>
                                                         <td>{{$item->apellido}}</td>
                                                         <td>{{$item->telefono}}</td>

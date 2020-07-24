@@ -18,11 +18,23 @@ class ProductorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $dataProductor = null;
+        $buscador = $request->buscador;
+
+        if($buscador)
+        {
         $dataProductor = Productore::Select('users.*')
         ->join('users','users.id','=','productores.user_id')
+        ->whereRaw("(users.name LIKE '%{$buscador}%' OR users.apellido LIKE '%{$buscador}%')")
         ->paginate(5);
+        }else
+        {
+            $dataProductor = Productore::Select('users.*')
+            ->join('users','users.id','=','productores.user_id')
+            ->paginate(5);
+        }
 
         
          return view('admin.productor.verProductor', compact('dataProductor'));
@@ -68,6 +80,7 @@ class ProductorController extends Controller
     {
         $dataProductor = Productore::Select('users.*')
         ->join('users','users.id','=','productores.user_id')
+        ->where('users.id', '=', $id)
         ->get();
 
 
